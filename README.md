@@ -18,7 +18,9 @@ npm run build
 npm start
 ```
 
-Development uses `.next`; production uses `.next-production`, so build checks do not overwrite a running development preview.
+Development uses `.next-dev`; production uses the standard `.next` directory expected by Vercel, so build checks do not overwrite a running development preview.
+
+For Vercel, select the Next.js framework preset, use `npm run build`, and leave the Output Directory override disabled.
 
 ## Pages
 
