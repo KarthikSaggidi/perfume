@@ -1,9 +1,21 @@
 export const products = [
- {id:'noir',name:'Noir Legacy',family:'Woody · Spicy',price:2799,color:'#072537',notes:'Black pepper · Oud · Vetiver'},
- {id:'flora',name:'Verde Essence',family:'Fresh · Aromatic',price:2299,color:'#65724a',notes:'Neroli · Jasmine · White musk'},
- {id:'ocean',name:'Titan',family:'Fresh · Citrus',price:2499,color:'#d8c6a1',notes:'Sea salt · Bergamot · Cedar'},
- {id:'velvet',name:'Velvet Bloom',family:'Floral · Oriental',price:2299,color:'#d5998e',notes:'Bulgarian rose · Peony · Sandalwood'},
- {id:'amber',name:'Amber Command',family:'Amber · Woody',price:2599,color:'#814018',notes:'Saffron · Amber · Vanilla'},
+ {id:'noir',name:'Noir Essence',family:'Woody · Bold · Mysterious',price:7299,color:'#17120d',notes:'Black pepper · Oud · Vetiver',rating:4.9,reviews:'1.8K',badge:'New'},
+ {id:'flora',name:'Celeste',family:'Fresh · Clean · Invigorating',price:5499,color:'#a9b888',notes:'Neroli · Jasmine · White musk',rating:4.7,reviews:'1.3K',badge:''},
+ {id:'ocean',name:'Aurora',family:'Citrus · Floral · Unisex',price:6999,color:'#e6b68c',notes:'Orange blossom · Lime · Soft woods',rating:4.8,reviews:'1.5K',badge:'Signature'},
+ {id:'velvet',name:'Bloom',family:'Floral · Elegant · Long Lasting',price:6499,color:'#e6a49c',notes:'Rose · Peony · Vanilla',rating:4.8,reviews:'2.1K',badge:'Bestseller'},
+ {id:'amber',name:'Oud Royale',family:'Oriental · Spicy · Luxurious',price:8999,color:'#a96025',notes:'Saffron · Oud · Amber',rating:4.9,reviews:'1.6K',badge:''},
 ];
 export type Product = typeof products[number];
+export type BottleSize = 50 | 100;
 export const money = (n:number) => `₹${n.toLocaleString('en-IN')}`;
+export const productPrice = (p:Product,size:BottleSize=50) => size===100?Math.round(p.price*1.6):p.price;
+export const cartKey = (id:string,size:BottleSize=50) => size===50?id:`${id}:100`;
+export function cartItems(cart:Record<string,number>){
+ return Object.entries(cart).flatMap(([key,quantity])=>{
+  const [id,variant]=key.split(':');
+  const product=products.find(p=>p.id===id);
+  if(!product||!Number.isInteger(quantity)||quantity<1||(variant&&variant!=='100'))return [];
+  const size:BottleSize=variant==='100'?100:50;
+  return [{...product,key,size,quantity,unitPrice:productPrice(product,size)}];
+ });
+}

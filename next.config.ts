@@ -4,6 +4,8 @@ import path from 'node:path';
 
 export default function config(phase: string): NextConfig {
   return {
+    devIndicators: false,
+    images: { qualities: [75, 90] },
     outputFileTracingRoot: path.resolve(process.cwd()),
     // Vercel expects production output in .next; isolate development previews.
     distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next-dev' : '.next',

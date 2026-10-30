@@ -1,28 +1,22 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import {useEffect,useRef,useState} from 'react';
-import {useReducedMotion} from 'motion/react';
-import {Swiper,SwiperSlide} from 'swiper/react';
-import {A11y,Autoplay,EffectFade,Keyboard} from 'swiper/modules';
-import type {Swiper as SwiperType} from 'swiper';
+import {useState} from 'react';
 import {ArrowLeft,ArrowRight} from 'lucide-react';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-export const campaignBanners=[
- {id:'noir',src:'/images/banners/noir.png',title:'A Fragrance That Defines You',name:'Noir',description:'Auréalis Noir with golden wood and amber at a sunset marble terrace.',href:'/collections/signature',action:'Explore the signature collection'},
- {id:'ocean',src:'/images/banners/ocean.png',title:'Scents for a Brighter You',name:'Ocean Breeze',description:'Ocean Breeze beside citrus and white flowers at twilight.',href:'/collections/fresh',action:'Explore fresh fragrances'},
- {id:'vetiver',src:'/images/banners/vetiver.png',title:'More Than a Fragrance',name:'Vétiver Botanica',description:'Vétiver Botanica with woods and botanicals overlooking a golden coastal landscape.',href:'/collections/signature',action:'Discover the collection'},
- {id:'oud',src:'/images/banners/oud.png',title:'Elegance in Every Note',name:'Oud Elixir',description:'Oud Elixir, lavender, and warm amber in a sunlit architectural setting.',href:'/collections/spicy',action:'Explore woody and spicy fragrances'},
- {id:'citrus',src:'/images/banners/citrus.png',title:'Nature’s Finest in a Bottle',name:'Citrus Ambre',description:'Citrus Ambre with orange, white flowers, and glowing amber in warm morning light.',href:'/collections/citrus',action:'Explore the citrus collection'},
+import AtelierImage from './AtelierImage';
+import {fragranceFamilies} from '@/lib/fragrance-families';
+const campaigns=[
+ {name:'Aurora',id:'ocean',image:'/images/velora-hero.webp',title:<>SCENTS<br className="velora-desktop-break"/> BEYOND<br className="velora-desktop-break"/> BOUNDARIES</>,description:'Unisex fragrances crafted from the world’s rarest ingredients, designed to inspire every story.'},
+ {name:'Bloom',id:'velvet',image:'/images/velora-bloom.webp',title:<>A STORY<br className="velora-desktop-break"/> IN EVERY<br className="velora-desktop-break"/> BLOOM</>,description:'Romantic florals and luminous petals. A beautiful expression of everything that makes you, you.'},
+ {name:'Noir Essence',id:'noir',image:'/images/velora-noir.webp',title:<>LEAVE<br className="velora-desktop-break"/> A LASTING<br className="velora-desktop-break"/> IMPRESSION</>,description:'Bold woods, golden warmth, and a little mystery. Discover a signature that stays with you.'},
 ];
-export default function CampaignCarousel(){const swiper=useRef<SwiperType|null>(null);const root=useRef<HTMLElement>(null);const [active,setActive]=useState(0);const preference=useReducedMotion();const [reduced,setReduced]=useState(false);
- useEffect(()=>setReduced(Boolean(preference)),[preference]);
- useEffect(()=>{if(!swiper.current)return;if(reduced)swiper.current.autoplay.stop();else swiper.current.autoplay.start()},[reduced]);
- useEffect(()=>{if(!root.current)return;const observer=new IntersectionObserver(([entry])=>{if(!entry.isIntersecting)swiper.current?.autoplay.stop();else if(!reduced)swiper.current?.autoplay.start()},{threshold:.15});observer.observe(root.current);return()=>observer.disconnect()},[reduced]);
- return <section ref={root} className={`campaign-carousel ${reduced?'campaign-reduced':''}`} aria-label="Auréalis fragrance campaigns" aria-roledescription="carousel" onMouseEnter={()=>swiper.current?.autoplay.stop()} onMouseLeave={()=>{if(!reduced&&!root.current?.matches(':focus-within'))swiper.current?.autoplay.start()}} onFocusCapture={()=>swiper.current?.autoplay.stop()} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node)&&!reduced&&!e.currentTarget.matches(':hover'))swiper.current?.autoplay.start()}}>
- <h1 className="visually-hidden">Auréalis — A fragrance that defines you</h1>
- <Swiper modules={[A11y,Autoplay,EffectFade,Keyboard]} effect="fade" fadeEffect={{crossFade:true}} speed={reduced?0:1000} loop keyboard={{enabled:true,onlyInViewport:true}} autoplay={{delay:7000,disableOnInteraction:false,pauseOnMouseEnter:true}} onSwiper={s=>{swiper.current=s;if(reduced)s.autoplay.stop()}} onSlideChange={s=>setActive(s.realIndex)} onAutoplayTimeLeft={(_,__,progress)=>root.current?.style.setProperty('--campaign-progress',`${(1-progress)*100}%`)}>{campaignBanners.map((b,i)=><SwiperSlide key={b.id} aria-label={`${i+1} of ${campaignBanners.length}: ${b.title}`}><Link className="campaign-artwork" href={b.href} aria-label={`${b.title}. ${b.action}`} tabIndex={active===i?0:-1}><Image src={b.src} alt={`${b.title} — ${b.description}`} width={1971} height={798} priority={i===0} sizes="(max-width:760px) 100vw, (max-width:1600px) 95vw, 1280px"/><span className="visually-hidden">{b.action}</span></Link></SwiperSlide>)}</Swiper>
- <div className="campaign-control-bar"><div className="campaign-arrows"><button aria-label="Previous banner" onClick={()=>swiper.current?.slidePrev()}><ArrowLeft size={16}/></button><button aria-label="Next banner" onClick={()=>swiper.current?.slideNext()}><ArrowRight size={16}/></button></div><div className="campaign-dots" aria-label="Choose a campaign">{campaignBanners.map((b,i)=><button key={b.id} aria-label={`Show ${b.name} banner`} aria-current={active===i} onClick={()=>swiper.current?.slideToLoop(i)}><span>{String(i+1).padStart(2,'0')}</span><i/></button>)}</div><p className="campaign-counter" aria-live="off">{String(active+1).padStart(2,'0')} <span>/ 05</span></p></div>
- </section>
+export default function CampaignCarousel(){
+ const [active,setActive]=useState(0),campaign=campaigns[active];
+ const change=(direction:number)=>setActive(a=>(a+direction+campaigns.length)%campaigns.length);
+ return <section className={`velora-hero velora-campaign-${campaign.id}`} aria-label="Velora fragrance stories" aria-roledescription="carousel">
+  <div className="velora-hero-art"><picture>{campaign.id==='ocean'&&<source media="(max-width:760px)" srcSet="/images/velora-portrait.webp"/>}<Image key={campaign.id} src={campaign.image} alt={`${campaign.name} by Velora, surrounded by flowers, natural woods and golden light`} fill priority sizes="(max-width:760px) 100vw, 1440px" quality={90}/></picture></div><div className="velora-hero-shade"/>
+  <div className="velora-hero-copy" key={campaign.id}><p className="velora-overline">A FRAGRANCE<br className="velora-desktop-break"/> FOR EVERY YOU</p><h1>{campaign.title}</h1><p className="velora-hero-description">{campaign.description}</p><Link href="/shop" className="velora-pill-button">Explore Collection <ArrowRight size={17}/></Link><div className="velora-hero-stats"><div><strong>50+</strong><span>Signature Scents</span></div><div><strong>8D</strong><span>Sensory Experience</span></div><div><strong>100K+</strong><span>Happy Customers</span></div></div></div>
+  <aside className="velora-hero-families" aria-label="Explore fragrance families"><div className="velora-family-index" aria-hidden="true">{['01','02','03','04','05'].map(n=><span key={n}>{n}<i/></span>)}</div><div>{fragranceFamilies.slice(0,5).map(f=><Link href={f.href} key={f.name}><AtelierImage scene={f.scene} alt=""/><span><strong>{f.name}</strong><small>{f.description}</small></span></Link>)}</div></aside>
+  <div className="velora-hero-pagination"><span aria-live="polite">{active+1}/3</span>{campaigns.map((c,i)=><button key={c.id} onClick={()=>setActive(i)} aria-label={`Show ${c.name} story`} aria-current={active===i?'true':undefined}><i/></button>)}</div><div className="velora-hero-arrows"><button onClick={()=>change(-1)} aria-label="Previous fragrance story"><ArrowLeft size={19}/></button><button onClick={()=>change(1)} aria-label="Next fragrance story"><ArrowRight size={19}/></button></div>
+ </section>;
 }

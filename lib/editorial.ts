@@ -1,4 +1,6 @@
 export const collections=[
+ {slug:'gourmand',name:'Gourmand',line:'Sweet, warm, and a little irresistible.',description:'Vanilla, soft amber, and warm woods create comforting compositions with an addictive finish.',region:'gourmand',ids:['velvet','amber']},
+ {slug:'floral',name:'The Floral Edit',line:'Let your everyday bloom.',description:'Expressive rose, peony, and luminous white florals. Discover compositions with softness, texture, and a captivating presence.',region:'floral',ids:['velvet','flora']},
  {slug:'signature',name:'Signature Blends',line:'Make an impression that feels like you.',description:'Distinctive woody compositions for the everyday moments that become part of your story.',region:'signature',ids:['noir','amber']},
  {slug:'fresh',name:'Fresh Essentials',line:'A new perspective, every day.',description:'Airy, spirited fragrances with crisp openings and an effortless sense of possibility.',region:'fresh',ids:['ocean','flora']},
  {slug:'spicy',name:'Spicy Classics',line:'Quiet confidence. Unexpected depth.',description:'Black pepper, saffron and warm accords bring character to a carefully considered collection.',region:'spicy',ids:['noir','amber']},

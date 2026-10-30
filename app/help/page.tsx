@@ -1,3 +1,3 @@
 import {HelpPage} from '@/components/ServicePages';
-export const metadata={title:'Help & Delivery — AURÉALIS'};
+export const metadata={title:'Help & Delivery — VELORA'};
 export default HelpPage;

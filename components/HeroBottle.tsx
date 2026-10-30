@@ -85,11 +85,11 @@ export default function HeroBottle({ name, color, active }: { name: string; colo
     ctx.clearRect(0, 0, 768, 900);
     ctx.strokeStyle = '#e9cd92'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(365,100); ctx.lineTo(384,64); ctx.lineTo(403,100); ctx.closePath(); ctx.stroke();
     ctx.textAlign = 'center'; ctx.fillStyle = '#e8c98e';
-    ctx.font = '74px Georgia'; ctx.fillText('AURÉALIS', 384, 185);
-    ctx.font = '19px Arial'; ctx.fillText('L ’ A R T   D U   P A R F U M', 384, 245);
+    ctx.font = '74px Georgia'; ctx.fillText('VELORA', 384, 185);
+    ctx.font = '19px Arial'; ctx.fillText('F R A G R A N C E S', 384, 245);
     ctx.fillStyle = '#a88b60'; ctx.fillRect(325, 340, 118, 2);
     ctx.fillStyle = '#e8c98e'; ctx.font = '76px Georgia';
-    (({ 'Noir Legacy':'NOIR', 'Amber Command':'EMBER', 'Verde Essence':'VERDE', 'Titan':'TITAN', 'Velvet Bloom':'VELVET BLOOM' } as Record<string,string>)[name]||name.toUpperCase()).split(' ').forEach((word, i) => ctx.fillText(word, 384, 460 + i * 60));
+    name.toUpperCase().split(' ').forEach((word, i) => ctx.fillText(word, 384, 460 + i * 60));
     ctx.font = '19px Arial'; ctx.fillText('E A U   D E   P A R F U M', 384, 730);
     ctx.font = '17px Arial'; ctx.fillText('50 ML  /  1.7 FL.OZ.', 384, 790);
     const labelTexture = new THREE.CanvasTexture(canvas); labelTexture.colorSpace = THREE.SRGBColorSpace;
@@ -98,13 +98,13 @@ export default function HeroBottle({ name, color, active }: { name: string; colo
     label.position.set(0, -.03, .39); bottle.add(label);
     const rear = new THREE.Mesh(new THREE.PlaneGeometry(.3, .2), new THREE.MeshStandardMaterial({ color: '#b99a66', roughness: .7 }));
     rear.position.set(0, -.12, -.39); rear.rotation.y = Math.PI; bottle.add(rear);
-    // The diamond-cut cap stays seated throughout the uninterrupted product turn.
+    // A polished gold cap and black top echo the Velora campaign photography.
     const gripCanvas=document.createElement('canvas');gripCanvas.width=gripCanvas.height=256;
     const grip=gripCanvas.getContext('2d')!;grip.fillStyle='#666';grip.fillRect(0,0,256,256);
     grip.strokeStyle='#ddd';grip.lineWidth=2;
     for(let i=-256;i<512;i+=12){grip.beginPath();grip.moveTo(i,0);grip.lineTo(i+256,256);grip.stroke();grip.beginPath();grip.moveTo(i,0);grip.lineTo(i-256,256);grip.stroke()}
     const gripTexture=new THREE.CanvasTexture(gripCanvas);gripTexture.wrapS=gripTexture.wrapT=THREE.RepeatWrapping;gripTexture.repeat.set(3,1);
-    const capMaterial=new THREE.MeshStandardMaterial({color:name==='Amber Command'?'#b6965b':'#2b3032',metalness:.9,roughness:.35,bumpMap:gripTexture,bumpScale:.065});
+    const capMaterial=new THREE.MeshStandardMaterial({color:'#c9a064',metalness:.95,roughness:.16,bumpMap:gripTexture,bumpScale:.001});
     const cap=new THREE.Mesh(new THREE.CylinderGeometry(.32,.32,.48,64),capMaterial);cap.position.set(0,1.28,0);bottle.add(cap);
     const capTop=new THREE.Mesh(new THREE.CylinderGeometry(.315,.315,.018,64),dark);capTop.position.set(0,1.527,0);bottle.add(capTop);
     scene.add(new THREE.HemisphereLight('#fff2e4', '#8f6c50', .7));
