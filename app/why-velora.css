@@ -1,0 +1,18 @@
+.velora-why {padding:25px 0 28px;margin:26px 0 23px;border-top:1px solid #ddd4c57d;border-bottom:1px solid #ddd4c57d;}
+.velora-why-heading {margin-bottom:22px;}
+.velora-why-heading>p {font:500 10px/1.5 Arial,sans-serif;letter-spacing:2.4px;color:#a0825c;margin-bottom:7px;}
+.velora-why-heading>h2 {font:400 31px/1.2 Georgia,serif;letter-spacing:-.6px;color:#342b22;}
+.velora-why-reasons {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+.velora-why-reason {display:grid;grid-template-columns:88px minmax(0,1fr);align-items:center;gap:16px;min-width:0;}
+.velora-why-reason:not(:last-child) {border-right:1px solid #ddd4c57d;padding-right:22px;}
+.velora-why-photo {position:relative;height:106px;overflow:hidden;border-radius:7px;background:#ece1d1;}
+.velora-why-photo>.atelier-image {position:absolute;inset:0;height:100%;width:100%;}
+.velora-why-copy h3 {font:400 20px/1.2 Georgia,serif;letter-spacing:-.25px;color:#433223;margin:0 0 7px;}
+.velora-why-copy>p {font:400 13px/1.6 Arial,sans-serif;color:#8a7863;max-width:230px;margin:0;}
+.velora-why-copy>span {display:flex;align-items:center;gap:7px;font:500 11px/1.4 Arial,sans-serif;color:#89643c;margin-top:11px;}
+.velora-why-copy>span>svg {flex:none;transition:transform .18s ease;}
+.velora-why-reason:hover .velora-why-copy>span>svg {transform:translate(2px,-2px);}
+.velora-why-reason:focus-visible {outline:2px solid #a5875c;outline-offset:6px;border-radius:5px;}
+@media(max-width:1050px) and (min-width:761px) {.velora-why-reasons {gap:17px;}.velora-why-reason {grid-template-columns:65px minmax(0,1fr);gap:12px;}.velora-why-reason:not(:last-child) {padding-right:14px;}.velora-why-photo {height:103px;}.velora-why-copy h3 {font-size:18px;}.velora-why-copy>p {font-size:12px;}.velora-why-copy>span {font-size:10px;}}
+@media(max-width:760px) {.velora-why {padding:21px 0 23px;margin:22px 0 20px;}.velora-why-heading {margin-bottom:19px;}.velora-why-heading>p {font-size:9px;letter-spacing:2px;}.velora-why-heading>h2 {font-size:28px;}.velora-why-reasons {grid-template-columns:1fr;gap:17px;}.velora-why-reason {grid-template-columns:73px minmax(0,1fr);gap:16px;}.velora-why-reason:not(:last-child) {border-right:0;border-bottom:1px solid #ddd4c550;padding:0 0 17px;}.velora-why-photo {height:80px;border-radius:6px;}.velora-why-copy h3 {font-size:20px;margin-bottom:5px;}.velora-why-copy>p {font-size:12px;line-height:1.5;max-width:290px;}.velora-why-copy>span {font-size:10px;margin-top:8px;}}
+@media(prefers-reduced-motion:reduce) {.velora-why-copy>span>svg {transition:none;}}

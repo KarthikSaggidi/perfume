@@ -1,0 +1,16 @@
+import type {AdminBootstrap,Order} from './commerce-types';
+export type ReportFilters={days:number;channel:string;category:string;product:string;status:string;region:string};
+export const defaultReportFilters:ReportFilters={days:30,channel:'all',category:'all',product:'all',status:'all',region:'all'};
+export const fragranceCategory=(family:string)=>family.split('·')[0].trim();
+export function createReport(data:Pick<AdminBootstrap,'products'|'orders'|'customers'|'settings'>,filters:ReportFilters,now=new Date()){
+ const end=new Date(now);end.setHours(23,59,59,999);const start=new Date(end);start.setDate(start.getDate()-filters.days+1);start.setHours(0,0,0,0);const previous=new Date(start);previous.setDate(previous.getDate()-filters.days);
+ const matches=(order:Order)=>(filters.status==='all'||order.status===filters.status)&&(filters.region==='all'||order.address.state===filters.region)&&(filters.product==='all'||order.items.some(item=>item.productId===filters.product))&&(filters.category==='all'||order.items.some(item=>fragranceCategory(data.products.find(product=>product.id===item.productId)?.family||'')===filters.category));
+ const orders=data.orders.filter(order=>matches(order)&&Date.parse(order.createdAt)>=start.getTime()&&Date.parse(order.createdAt)<=end.getTime()),prior=data.orders.filter(order=>matches(order)&&Date.parse(order.createdAt)>=previous.getTime()&&Date.parse(order.createdAt)<start.getTime());
+ const paid=(orders:Order[])=>orders.filter(order=>order.paymentStatus==='paid').reduce((sum,order)=>sum+order.total,0);
+ const products=data.products.filter(product=>product.status!=='archived'&&(filters.product==='all'||product.id===filters.product)&&(filters.category==='all'||fragranceCategory(product.family)===filters.category));
+ const customers=data.customers.filter(customer=>Date.parse(customer.createdAt)>=start.getTime()&&Date.parse(customer.createdAt)<=end.getTime()&&(Object.entries(filters).every(([key,value])=>['days','channel'].includes(key)||value==='all')||orders.some(order=>order.customerId===customer.id)));
+ const points=Array.from({length:filters.days},(_,index)=>{const day=new Date(start);day.setDate(day.getDate()+index);const following=new Date(day);following.setDate(following.getDate()+1);const daily=orders.filter(order=>Date.parse(order.createdAt)>=day.getTime()&&Date.parse(order.createdAt)<following.getTime());return{date:day,total:paid(daily),orders:daily.length}});
+ const top=new Map<string,{id:string;name:string;image:string;quantity:number;total:number}>();
+ for(const order of orders)if(order.status!=='cancelled')for(const item of order.items){if(filters.product!=='all'&&filters.product!==item.productId)continue;if(filters.category!=='all'&&fragranceCategory(data.products.find(product=>product.id===item.productId)?.family||'')!==filters.category)continue;const product=top.get(item.productId)||{id:item.productId,name:item.name,image:item.image,quantity:0,total:0};product.quantity+=item.quantity;product.total+=item.total;top.set(item.productId,product)}
+ return{start,end,orders,customers,products,points,revenue:paid(orders),previousRevenue:paid(prior),previousOrders:prior.length,low:products.filter(product=>product.status==='active'&&product.stock<=data.settings.lowStockThreshold),top:[...top.values()].sort((a,b)=>b.quantity-a.quantity)};
+}

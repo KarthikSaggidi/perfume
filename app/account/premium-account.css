@@ -1,0 +1,187 @@
+/* The signed-in account surface. Navbar styling stays with the storefront. */
+.product-world:has(.premium-account)>#site-content { width:100%;max-width:none; }
+.product-world:has(.premium-account) { background:#fff!important; }
+.customer-account.premium-account { --account-ink:#151a24;--account-muted:#59606c;--account-gold:#244d3a;--account-border:#e4e6e9;--account-paper:#fff;--account-soft:#f5f7f6;padding:0;background:linear-gradient(125deg,#fff,#fdfefe);color:#161d26;font:15px/1.5 Arial,Helvetica,sans-serif; }
+.premium-account-layout { display:grid;grid-template-columns:300px minmax(0,1fr);min-height:calc(100svh - 86px); }
+.premium-account-sidebar { min-width:0;padding:25px 22px 28px;border-right:1px solid #eceef0;background:#ffffffdf; }
+.premium-account-identity { display:flex;align-items:center;gap:15px;min-height:99px;padding:17px 16px;margin-bottom:16px;border-radius:11px;background:linear-gradient(120deg,#f5f7f7,#f8f9f9); }
+.premium-avatar { display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:50%;background:#e5ece8;color:#143f2b;font-size:24px;letter-spacing:-.5px; }
+.premium-account-identity>div { min-width:0; }
+.premium-account-identity strong { display:block;color:#111817;font-size:17px;font-weight:600;line-height:1.4;overflow-wrap:anywhere; }
+.premium-account-identity>div>span { display:block;font-size:14px;color:#3e454c;margin:3px 0; }
+.premium-verified { display:inline-flex;align-items:center;justify-content:center;gap:4px;width:fit-content;white-space:nowrap;padding:2px 9px;background:#e7efe9;color:#244c36;border-radius:14px;font:13px/1.4 Arial,sans-serif;font-weight:500; }
+.premium-verified svg { flex:none; }
+.premium-account-sidebar nav { display:grid;gap:2px; }
+.premium-account-sidebar nav button { display:flex;align-items:center;gap:15px;width:100%;min-width:0;min-height:38px;padding:9px 12px;text-align:left;border:1px solid transparent;border-radius:8px;background:transparent;color:#141b20;font-size:14px;line-height:1.5; }
+.premium-account-sidebar nav button>svg { flex:none;color:#1e3028; }
+.premium-account-sidebar nav button>span { flex:1;min-width:0; }
+.premium-account-sidebar nav button>svg:last-child { width:13px;color:#4c5553; }
+.premium-account-sidebar nav button>b { display:grid;place-items:center;min-width:26px;height:20px;padding:0 7px;border-radius:12px;background:#e6eee8;color:#254c37;font-size:12px;font-weight:600; }
+.premium-account-sidebar nav button[aria-current=page] { color:#fff;background:linear-gradient(110deg,#1e4b36,#244e3a);border-color:#305a43;box-shadow:0 2px 4px #1e4b3617;font-weight:600; }
+.premium-account-sidebar nav button[aria-current=page]>svg { color:#f1faf4; }
+.premium-account-sidebar nav button:not([aria-current]):hover { background:#f1f6f3;color:#214c34; }
+.premium-account-sidebar nav button.has-divider { position:relative;margin-top:17px; }
+.premium-account-sidebar nav button.has-divider:before { content:'';position:absolute;left:0;right:0;top:-10px;height:1px;background:#e9ecec; }
+.premium-signout { display:flex;align-items:center;gap:15px;min-height:39px;padding:10px 13px;color:#a82e22;font-size:14px;width:100%;margin-top:1px; }
+.premium-rewards-promo { position:relative;isolation:isolate;min-height:184px;margin-top:25px;padding:21px 18px;border:1px solid #fae6d8;border-radius:11px;overflow:hidden;background:#fbefe5 url('/images/velora-account-rewards.webp') center/cover no-repeat; }
+.premium-rewards-promo:before { content:'';position:absolute;inset:0;background:linear-gradient(90deg,#fbf1e8a6,transparent 78%);z-index:-1; }
+.premium-rewards-promo h3 { max-width:150px;font:600 24px/1.15 Georgia,serif;color:#131a19;letter-spacing:-.4px; }
+.premium-rewards-promo p { max-width:145px;font-size:13px;line-height:1.65;color:#323b3a;margin-top:9px; }
+.premium-rewards-promo button { display:flex;align-items:center;justify-content:center;gap:9px;min-height:31px;max-width:100%;margin-top:17px;padding:6px 12px;border-radius:7px;background:#234c38;color:#fff;font-size:13px; }
+.premium-account-main { min-width:0;padding:25px 25px 20px; }
+.premium-account-heading { margin-bottom:30px; }
+.premium-account-heading>p { font-size:12px;line-height:1.6;font-weight:600;letter-spacing:.3px;color:#1a211f; }
+.premium-account .premium-account-heading h1 { font:600 30px/1.25 Georgia,'Times New Roman',serif;color:#10151a;letter-spacing:-.5px;margin:8px 0 4px;overflow-wrap:anywhere; }
+.premium-welcome-wave { display:inline-block;font:27px Arial,sans-serif;margin-left:5px; }
+.premium-account-heading>span { display:block;font-size:14px;line-height:1.6;color:#555e6c; }
+.premium-account .account-panel { background:linear-gradient(120deg,#fff,#fcfdfd);border:1px solid #e1e4e8;border-radius:12px;box-shadow:0 1px 3px #20362c07; }
+.premium-account-stats { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:22px; }
+.premium-stat { display:flex;align-items:center;gap:15px;min-width:0;min-height:92px;padding:16px 17px;border:1px solid #e0e4e8;border-radius:12px;background:linear-gradient(110deg,#fff,#f7faf8);text-align:left; }
+.premium-stat>span { display:grid;place-items:center;flex:none;width:49px;height:49px;border-radius:50%;background:#f0f6f2;color:#214c35; }
+.premium-stat>div { min-width:0; }
+.premium-stat strong { display:block;font:600 31px/1.12 Georgia,serif;letter-spacing:-.8px;color:#11182a; }
+.premium-stat small { display:block;margin-top:7px;color:#3c465b;font-size:13px;line-height:1.5; }
+.premium-stat-blue { background:linear-gradient(110deg,#fff,#f5f9fd); }.premium-stat-blue>span { background:#eff7ff;color:#2678c5; }
+.premium-stat-rose { background:linear-gradient(110deg,#fff,#fdf8f8); }.premium-stat-rose>span { background:#fcf3f2;color:#8d332e; }
+.premium-stat-purple { background:linear-gradient(110deg,#fff,#faf7fe); }.premium-stat-purple>span { background:#f7f1ff;color:#683eac; }
+.premium-account-panels { display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:21px; }
+.premium-account-panels>section { min-width:0;padding:17px 18px; }
+.premium-panel-heading { display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:0 1px 13px;border-bottom:1px solid #e7eaec; }
+.premium-account .premium-panel-heading h2 { display:flex;align-items:center;gap:12px;color:#12191a;font:600 23px/1.3 Georgia,serif;letter-spacing:-.4px;margin:0; }
+.premium-panel-heading h2>svg { flex:none;color:#244e38; }
+.premium-panel-heading>button { display:flex;align-items:center;gap:9px;font-size:13px;line-height:1.5;color:#235038;white-space:nowrap;padding:3px 0; }
+.premium-orders-panel,.premium-quick-panel { min-height:298px; }
+.premium-no-orders { display:flex;align-items:center;flex-direction:column;text-align:center;padding:19px 10px 0; }
+.premium-empty-parcels { width:128px;height:85px;margin:2px 0 6px; }
+.premium-account .premium-no-orders h3 { font:600 23px/1.25 Georgia,serif;letter-spacing:-.35px;color:#11181c;margin:0; }
+.premium-no-orders>p { font-size:14px;color:#626975;margin-top:5px;line-height:1.6; }
+.premium-no-orders .account-primary-button { margin-top:14px;min-height:33px;padding:7px 18px;font-size:13px; }
+.premium-quick-panel .premium-panel-heading { border-bottom:0;padding-bottom:12px; }
+.premium-quick-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+.premium-quick-grid>a,.premium-quick-grid>button { position:relative;display:flex;align-items:flex-start;flex-direction:column;justify-content:center;min-height:99px;min-width:0;padding:13px 15px;border:1px solid #e3e5e8;border-radius:11px;background:linear-gradient(120deg,#fff,#f9faf9);text-align:left;color:#15231c; }
+.premium-quick-grid :is(a,button)>svg:first-child { color:#2b503a;margin-bottom:7px; }
+.premium-quick-grid>button:nth-child(2)>svg:first-child { color:#7e3732; }
+.premium-quick-grid strong { font-size:14px;line-height:1.5;font-weight:600;color:#141b1c;padding-right:10px; }
+.premium-quick-grid span { font-size:13px;line-height:1.5;color:#5d636d;margin-top:1px; }
+.premium-quick-grid :is(a,button)>svg:last-child { position:absolute;right:11px;top:45%;color:#263b32; }
+.premium-quick-grid :is(a,button):hover { border-color:#a9bfb1;background:#f4f9f5; }
+.premium-favourites-panel,.premium-details-panel { min-height:231px; }
+.premium-favourites-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding-top:16px; }
+.premium-favourites-grid>article { min-width:0; }
+.premium-favourite-image { position:relative;display:grid;place-items:center;aspect-ratio:1.58;overflow:hidden;background:#f5f0ee;border-radius:9px; }
+.premium-favourite-image>a,.premium-favourite-image .reference-crop { position:absolute;inset:0;width:100%;height:100%; }
+.premium-favourite-image>button { position:absolute;top:6px;right:7px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#a5493b;background:#fffaf2c9; }
+.premium-account .premium-favourites-grid h3 { font:500 14px/1.5 Arial,sans-serif;letter-spacing:0;color:#151e22;margin:6px 0 0;overflow-wrap:anywhere; }
+.premium-favourites-grid p { font-size:12px;line-height:1.5;color:#68717d;margin:0; }
+.premium-details-panel dl { margin:6px 0 0; }
+.premium-details-panel dl>div { display:flex;align-items:center;gap:15px;border-bottom:1px solid #e8eaec;min-height:34px;padding:7px 2px;font-size:13px; }
+.premium-details-panel dl>div:last-child { border-bottom:0; }
+.premium-details-panel dt { width:35%;flex:none;color:#4f5864; }
+.premium-details-panel dd { display:flex;flex:1;align-items:center;gap:8px;min-width:0;flex-wrap:wrap;color:#202b33;margin:0;overflow-wrap:anywhere; }
+.premium-details-panel dd .premium-verified,.premium-details-panel dd .premium-unverified { margin-left:auto; }
+.premium-details-panel dd>button { color:#365d47;text-decoration:underline;text-underline-offset:3px;padding:0;text-align:left; }
+.premium-unverified { font-size:12px;line-height:1.5;border-radius:12px;background:#f1f2f3;color:#777f86;padding:2px 7px;white-space:nowrap; }
+.premium-rewards-banner { position:relative;isolation:isolate;display:flex;align-items:center;gap:17px;min-height:84px;padding:16px 20px;margin-top:19px;border:1px solid #f2f5f2;border-radius:12px;background:linear-gradient(110deg,#f1f6f2,#f6f8f6);overflow:hidden; }
+.premium-reward-gift { display:grid;place-items:center;flex:none;width:53px;height:53px;border-radius:50%;background:#e4ece5;color:#214a33; }
+.premium-rewards-banner>div { flex:1;min-width:0; }
+.premium-account .premium-rewards-banner h3 { font:600 23px/1.3 Georgia,serif;color:#17251d;letter-spacing:-.3px; }
+.premium-rewards-banner p { font-size:13px;line-height:1.6;margin-top:3px;color:#47534e; }
+.premium-rewards-banner .account-primary-button { flex:none;min-height:33px;padding:7px 15px;font-size:13px;gap:13px; }
+.premium-botanical { position:absolute;z-index:-1;right:22%;bottom:-24px;width:240px;height:110px;opacity:.7; }
+.premium-account .account-primary-button { background:linear-gradient(110deg,#23503b,#214431);border:1px solid #315a43;border-radius:7px;color:#fff;font-size:14px;min-height:39px;padding:10px 17px; }
+.premium-account .account-primary-button:hover:not(:disabled) { background:#315d45;box-shadow:0 3px 10px #244a3716; }
+.premium-account .account-secondary-button { color:#2d513e;border-color:#d9e3dc;background:#f7faf7;font-size:14px;min-height:37px;padding:9px 14px; }
+.premium-account .account-text-button { font-size:14px;color:#365f47; }
+.premium-account .account-section-intro { margin-bottom:21px;align-items:flex-start; }
+.premium-account .account-section-intro h2 { font:500 27px/1.25 Georgia,serif;color:#18231d;letter-spacing:-.4px;margin:0 0 10px; }
+.premium-account .account-section-intro p:not(.account-eyebrow) { font-size:14px;color:#67716f;line-height:1.7; }
+.premium-account .account-eyebrow { color:#536a5d;font-size:11px; }
+.premium-account .account-field { color:#3e4e46;font-size:14px; }
+.premium-account .account-field :is(input,select,textarea) { color:#263a2d;border-color:#dce3df;background:#fff;font-size:16px;border-radius:8px; }
+.premium-account .account-form-hint { color:#738078;font-size:13px; }
+.premium-account .account-form-footer>span { color:#738078;font-size:13px; }
+.premium-account .account-profile-form { padding:25px; }
+.premium-account .account-profile-preferences { border-color:#e4ebe5; }
+.premium-account .account-profile-preferences h3 { font-size:20px;color:#293f31; }
+.premium-account .account-checkbox { color:#526457;font-size:14px;line-height:1.8; }
+.premium-account .account-checkbox input { accent-color:#2b523b; }
+.premium-account .account-profile-preferences>p { font-size:13px;color:#758176; }
+.premium-account .account-verified-phone { color:#234f38;background:#f1f7f1;border-color:#dce7dc; }
+.premium-account .account-empty-state h3,.premium-account .account-address-card h3,.premium-account .account-order-summary h3 { color:#263e2f; }
+.premium-account .account-empty-state p,.premium-account .account-address-card>p,.premium-account .account-wishlist-copy p { color:#647369;font-size:14px; }
+.premium-account .account-empty-state>svg { color:#466f50; }
+.premium-account .account-address-actions button { color:#3c654c;font-size:13px; }
+.premium-account .account-address-card .account-address-phone { font-size:13px;color:#657468; }
+.premium-account .account-order-items-preview>div>p { font-size:14px;color:#506756; }
+.premium-account .account-wishlist-copy h3 { color:#213b2b; }
+.premium-account .account-wishlist-copy>a:last-child { font-size:13px;color:#40634a; }
+.premium-account .account-wishlist-copy>strong { color:#2f4e38; }
+.premium-recent-orders>button { display:flex;align-items:center;gap:10px;width:100%;padding:15px 0;text-align:left;border-bottom:1px solid #e9eeeb; }
+.premium-recent-orders>button:last-child { border:0; }
+.premium-recent-orders>button>span:first-child { display:grid;place-items:center;flex:none;width:36px;height:42px;border-radius:7px;background:#eef4ef;color:#365d41; }
+.premium-recent-orders>button>div { flex:1;min-width:0; }
+.premium-recent-orders strong { color:#20392b;font-size:14px;font-weight:500; }
+.premium-recent-orders small { display:block;font-size:12px;color:#77827e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:4px; }
+.premium-account .account-status { font-size:12px; }
+.premium-small-empty { display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:25px 15px;gap:10px; }
+.premium-small-empty>svg { color:#4e7258; }
+.premium-account .premium-small-empty h3,.premium-account .premium-small-empty h4 { font:500 24px/1.3 Georgia,serif;color:#284330;letter-spacing:-.3px; }
+.premium-small-empty p { color:#738077;font-size:14px;line-height:1.7;max-width:350px; }
+.premium-feature-panel { display:flex;align-items:flex-start;gap:18px;padding:25px;margin-bottom:19px; }
+.premium-feature-panel>div { flex:1;min-width:0; }
+.premium-feature-icon { display:grid;place-items:center;flex:none;width:50px;height:50px;border-radius:50%;background:#f0f5f0;color:#3c6249; }
+.premium-account .premium-feature-panel h2,.premium-account .premium-feature-panel h3 { font:500 24px/1.4 Georgia,serif;color:#203a2a;letter-spacing:-.3px;margin-bottom:9px; }
+.premium-feature-panel strong { color:#2a4d35;font-size:16px; }
+.premium-feature-panel p { color:#66746a;font-size:15px;line-height:1.8;max-width:700px; }
+.premium-feature-panel .account-secondary-button,.premium-feature-panel .account-primary-button { margin-top:17px; }
+.premium-method-status { display:inline-flex;align-items:center;gap:6px;margin-top:13px;padding:5px 11px;border-radius:14px;font-size:13px;background:#f0f1ee;color:#6e786c; }
+.premium-method-status.is-available { background:#edf6ed;color:#365f38; }
+.premium-panel-note { font-size:14px;line-height:1.85;color:#738074;margin:18px 0 23px; }
+.premium-panel-note a { color:#3c6248;text-decoration:underline;text-underline-offset:3px; }
+.premium-preference-form,.premium-review-form { padding:25px;margin-bottom:22px; }
+.premium-account .premium-preference-form h3 { font:500 23px/1.3 Georgia,serif;color:#29462f;letter-spacing:-.3px;margin-bottom:15px; }
+.premium-preference-form>p { color:#7d887f;font-size:13px;margin:12px 0 19px; }
+.premium-notifications { padding:22px; }
+.premium-account .premium-notifications>h3 { display:flex;align-items:center;gap:10px;font:500 24px/1.3 Georgia,serif;color:#29432f;letter-spacing:-.4px; }
+.premium-notifications ol { list-style:none;padding:0;margin:17px 0 0; }
+.premium-notifications li { display:flex;gap:13px;padding:16px 0;border-top:1px solid #e7ede7; }
+.premium-notifications li>span { display:grid;place-items:center;flex:none;width:37px;height:37px;border-radius:50%;background:#eff6f0;color:#4d7252; }
+.premium-notifications li strong { color:#314e37;font-size:14px; }
+.premium-notifications li p { color:#6b7b6c;font-size:14px;line-height:1.7;margin-top:4px; }
+.premium-notifications time { display:block;color:#849084;font-size:12px;margin-top:7px; }
+.premium-rewards-detail { min-height:320px;padding:30px;background:linear-gradient(90deg,#fffdf8,#fffdf5aa),url('/images/velora-account-rewards.webp') right center/cover no-repeat!important; }
+.premium-rewards-detail>div { max-width:550px; }
+.premium-rewards-detail>div>svg { color:#406346;margin-bottom:20px; }
+.premium-account .premium-rewards-detail h3 { font:500 31px/1.3 Georgia,serif;color:#233c2b;letter-spacing:-.4px; }
+.premium-rewards-detail p { color:#66766a;font-size:15px;line-height:1.9;margin:13px 0 19px; }
+.premium-rewards-detail .account-primary-button { display:flex;width:fit-content;margin-top:20px; }
+.premium-form-actions { display:flex;justify-content:flex-end;gap:12px; }
+.premium-account-reviews { display:grid;gap:16px;margin-top:20px; }
+.premium-account-reviews>article { padding:23px; }
+.premium-account-reviews>article>div { display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap; }
+.premium-account-reviews strong { color:#39593c;font-size:15px; }
+.premium-account-reviews>article>div>span { display:flex;gap:3px;color:#b88f42; }
+.premium-account .premium-account-reviews h3 { font:500 24px/1.3 Georgia,serif;color:#233c29;letter-spacing:-.3px;margin:15px 0 8px; }
+.premium-account-reviews p { white-space:pre-wrap;overflow-wrap:anywhere;color:#6a786a;font-size:15px;line-height:1.8; }
+.premium-account-reviews small { display:block;color:#869284;font-size:12px;margin:13px 0; }
+.premium-account button:focus-visible,.premium-account a:focus-visible { outline:2px solid #7b9c82;outline-offset:3px; }
+@media(min-width:1800px) { .premium-account-layout { grid-template-columns:320px minmax(0,1fr); }.premium-account-main { padding:30px; }.premium-account-sidebar { padding:30px 25px; }.premium-account-stats { gap:17px; }.premium-account-heading { margin-bottom:34px; }.premium-account-panels { gap:24px; }.premium-account-panels>section { padding:20px; }.premium-orders-panel,.premium-quick-panel { min-height:310px; }.premium-quick-grid>a,.premium-quick-grid>button { min-height:103px; } }
+@media(max-width:1250px) { .premium-account-layout { grid-template-columns:255px minmax(0,1fr); }.premium-account-sidebar { padding:22px 15px; }.premium-account-main { padding:24px 20px; }.premium-account-identity { padding:15px 12px;gap:10px; }.premium-avatar { width:46px;height:46px;font-size:21px; }.premium-account-identity strong { font-size:15px; }.premium-account-identity>div>span { font-size:12px; }.premium-account-sidebar nav button { font-size:13px;gap:10px; }.premium-account-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }.premium-stat { min-height:83px; }.premium-account-panels { grid-template-columns:1fr;gap:17px; }.premium-orders-panel,.premium-quick-panel { min-height:0; }.premium-no-orders { padding-bottom:15px; }.premium-quick-grid>a,.premium-quick-grid>button { min-height:96px; }.premium-favourites-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.premium-rewards-banner { flex-wrap:wrap;gap:12px; }.premium-rewards-banner>div { flex-basis:65%; } }
+@media(max-width:800px) { .premium-account-layout { grid-template-columns:1fr; }.premium-account-sidebar { border-right:0;border-bottom:1px solid #e7ece9;padding:16px; }.premium-account-identity { min-height:76px;margin-bottom:10px;padding:13px 15px; }.premium-account-identity strong { font-size:17px; }.premium-account-identity>div>span { font-size:14px; }.premium-avatar { width:47px;height:47px;font-size:22px; }.premium-account-sidebar nav { display:flex;overflow-x:auto;gap:7px;padding:4px 1px 8px;overscroll-behavior-x:contain;scrollbar-width:thin;max-width:100%; }.premium-account-sidebar nav button { flex:none;width:auto;gap:7px;border-color:#e2e8e3;background:#fbfdfb;padding:8px 11px;font-size:13px;white-space:nowrap;min-height:36px; }.premium-account-sidebar nav button>svg:last-child { display:none; }.premium-account-sidebar nav button.has-divider { margin-top:0; }.premium-account-sidebar nav button.has-divider:before { display:none; }.premium-signout { width:fit-content;margin:2px 0 0 auto;font-size:13px;min-height:30px;padding:5px 4px;gap:7px; }.premium-rewards-promo { display:none; }.premium-account-main { padding:22px 18px 25px; }.premium-account-heading { margin-bottom:23px; }.premium-account .premium-account-heading h1 { font-size:28px; }.premium-account-heading>span { font-size:14px; }.premium-account-stats { gap:11px;margin-bottom:18px; }.premium-stat { min-height:86px;gap:12px;padding:14px; }.premium-stat>span { width:42px;height:42px; }.premium-stat strong { font-size:30px; }.premium-account .account-field :is(input,select,textarea) { font-size:18px; }.premium-feature-panel { padding:20px;flex-wrap:wrap; }.premium-feature-panel>div { flex-basis:70%; } }
+@media(max-width:450px) { .premium-account-sidebar { padding:14px 13px 9px; }.premium-account-main { padding:21px 13px 24px; }.premium-account .premium-account-heading h1 { font-size:27px;line-height:1.3; }.premium-welcome-wave { font-size:25px; }.premium-account-stats { gap:9px; }.premium-stat { padding:13px 10px;gap:9px;min-height:92px; }.premium-stat>span { width:34px;height:34px; }.premium-stat>span>svg { width:23px;height:23px; }.premium-stat strong { font-size:28px; }.premium-stat small { font-size:12px;line-height:1.5;margin-top:5px; }.premium-account-panels>section { padding:15px 13px; }.premium-account .premium-panel-heading h2 { font-size:22px;gap:9px; }.premium-panel-heading>button { font-size:12px;gap:6px; }.premium-panel-heading h2>svg { width:21px;height:21px; }.premium-no-orders { padding-top:15px; }.premium-no-orders>p { font-size:13px; }.premium-quick-grid { gap:9px; }.premium-quick-grid>a,.premium-quick-grid>button { padding:13px 10px;min-height:105px; }.premium-quick-grid strong { font-size:13px; }.premium-quick-grid span { font-size:12px;max-width:110px; }.premium-quick-grid :is(a,button)>svg:last-child { right:5px;width:13px; }.premium-favourites-grid { gap:9px; }.premium-favourite-image { aspect-ratio:1; }.premium-favourite-image>button { width:23px;height:23px;top:3px;right:3px; }.premium-favourite-image>button>svg { width:15px;height:15px; }.premium-account .premium-favourites-grid h3 { font-size:13px; }.premium-favourites-grid p { font-size:11px; }.premium-details-panel dt { width:30%; }.premium-details-panel dl>div { font-size:13px;gap:12px; }.premium-rewards-banner { padding:16px 14px;gap:11px; }.premium-reward-gift { width:43px;height:43px; }.premium-account .premium-rewards-banner h3 { font-size:23px; }.premium-rewards-banner p { font-size:13px; }.premium-rewards-banner .account-primary-button { margin-left:54px; }.premium-recent-orders>button { flex-wrap:wrap; }.premium-recent-orders .account-status { margin-left:46px; }.premium-account .account-profile-form,.premium-preference-form,.premium-review-form { padding:20px 16px; }.premium-rewards-detail { padding:23px 19px; }.premium-account .premium-feature-panel h2,.premium-account .premium-feature-panel h3 { font-size:23px; }.premium-feature-panel p { font-size:14px; }.premium-feature-icon { width:40px;height:40px; }.premium-notifications { padding:18px 15px; }.premium-feature-panel>div { flex-basis:60%; }.premium-account .account-wishlist-copy>a:last-child { font-size:12px; } }
+@media(prefers-reduced-motion:reduce) { .premium-account * { transition:none!important;scroll-behavior:auto!important; } }
+body:has(.premium-account) { background:#fff!important; }
+.product-world:has(.premium-account) { box-shadow:0 3px 28px #20362c0b; }
+@media(min-width:801px) {
+ .premium-account-identity strong { font-size:18px; }
+ .premium-account-sidebar nav button { font-size:15px; }
+ .premium-signout { font-size:15px; }
+ .premium-stat small { font-size:14px; }
+ .premium-panel-heading>button { font-size:14px; }
+ .premium-quick-grid strong { font-size:15px; }
+ .premium-quick-grid span { font-size:14px; }
+ .premium-details-panel dl>div { font-size:14px; }
+ .premium-account .premium-favourites-grid h3 { font-size:15px; }
+ .premium-favourites-grid p { font-size:13px; }
+ .premium-rewards-promo p { font-size:14px; }
+}

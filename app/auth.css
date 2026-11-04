@@ -1,0 +1,148 @@
+/* Shared login design, scoped independently from the shop and workspace. */
+.velora-auth {
+ --auth-forest:#203817;--auth-muted:#76777c;--auth-outline:#dedcda;
+ position:relative;isolation:isolate;display:grid;place-items:center;
+ min-width:0;min-height:100svh;padding:48px 24px;
+ color:#20251f;font:400 20px/1.5 Arial,Helvetica,sans-serif;background:#ac9281;
+}
+.velora-auth-backdrop { position:fixed;z-index:-2;inset:0;background:#ac9281 url('/images/velora-login-backdrop.webp') center/cover no-repeat; }
+.velora-auth--admin .velora-auth-backdrop:after { content:'';position:absolute;inset:0;background:#3e302125;backdrop-filter:blur(2px); }
+.velora-auth-card { position:relative;isolation:isolate;width:100%;max-width:656px;min-width:0;min-height:692px;padding:48px 58px 144px;border:1px solid #ffffffc9;border-radius:42px;background:linear-gradient(125deg,#fffdfbf5,#fffaf7f2);box-shadow:0 22px 75px #32201120;overflow:hidden; }
+.velora-auth-brand { display:flex;align-items:center;flex-direction:column;width:fit-content;max-width:100%;margin:0 auto 48px;color:var(--auth-forest); }
+.velora-auth-brand>span { font:400 56px/1.15 Georgia,'Times New Roman',serif;letter-spacing:5px; }
+.velora-auth-brand>small { display:flex;align-items:center;gap:15px;margin-top:10px;font:600 13px/1.5 Arial,Helvetica,sans-serif;letter-spacing:6px;padding-left:6px; }
+.velora-auth-brand i { display:block;flex:none;width:43px;height:1px;background:#c69b4e; }
+.velora-auth-heading { text-align:center; }
+.velora-auth .velora-auth-heading h1 { font:400 58px/1.14 Georgia,'Times New Roman',serif;letter-spacing:-1.5px;color:#20211f;margin:0;overflow-wrap:anywhere; }
+.velora-auth-heading>p { font-size:23px;line-height:1.5;color:var(--auth-muted);margin:12px 0 0;text-wrap:balance; }
+.velora-auth-heading strong { color:var(--auth-forest);font-weight:500;white-space:nowrap; }
+.velora-auth-form { margin-top:34px; }
+.velora-auth-field { display:block;min-width:0; }
+.velora-auth-field+.velora-auth-field { margin-top:16px; }
+.velora-auth-field>span,.velora-auth-field-label { display:block;margin-bottom:9px;font-size:19px;line-height:1.5;font-weight:500;color:#171a15; }
+.velora-auth-control { display:flex;align-items:center;gap:18px;min-width:0;min-height:58px;padding:0 20px;border:1px solid var(--auth-outline);border-radius:12px;background:#ffffffd9;box-shadow:0 1px 3px #362d2310;transition:border-color .2s,box-shadow .2s; }
+.velora-auth-control:focus-within { border-color:#6c805d;box-shadow:0 0 0 3px #405c2d15; }
+.velora-auth-control>svg { flex:none;width:22px;height:22px; }
+.velora-auth .velora-auth-control input { flex:1;min-width:0;width:100%;height:56px;margin:0;padding:0;border:0;border-radius:0;outline:0;background:transparent;box-shadow:none;color:#21261f;font:400 19px Arial,Helvetica,sans-serif; }
+.velora-auth-control input::placeholder { color:#7b7e86;opacity:1; }
+.velora-auth-control input:disabled { opacity:.7; }
+.velora-auth .velora-auth-control input:focus-visible { outline:0; }
+.velora-auth-control button { display:grid;place-items:center;flex:none;padding:7px;margin-right:-7px;color:#292e28;min-height:40px;min-width:40px; }
+.velora-auth button,.velora-auth select { font-family:Arial,Helvetica,sans-serif; }
+.velora-auth button:disabled,.velora-auth select:disabled { opacity:.55;cursor:not-allowed; }
+.velora-auth .velora-auth-submit:disabled { opacity:1; }
+.velora-auth :is(a,button,input,select):focus-visible { outline:2px solid #95692d;outline-offset:4px; }
+.velora-auth-submit { position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-height:64px;width:100%;padding:15px 54px;margin-top:38px;border:1px solid #324723;border-radius:12px;background:linear-gradient(110deg,#263f19,#1d3114);color:#fffef8;font-size:22px;font-weight:500;line-height:1.4;box-shadow:0 1px 1px #ffffff14 inset;transition:background .2s,box-shadow .2s; }
+.velora-auth-submit:hover:not(:disabled) { background:linear-gradient(110deg,#354f25,#2b421e);box-shadow:0 6px 20px #2339151a; }
+.velora-auth-submit>svg:last-child:not(.velora-auth-spinner) { position:absolute;right:33px;width:24px;height:24px; }
+.velora-auth-spinner { flex:none;animation:velora-auth-spin .8s linear infinite; }
+@keyframes velora-auth-spin { to {transform:rotate(360deg)} }
+.velora-auth-error { padding:12px 15px;border:1px solid #e6c4b7;background:#fff2ec;color:#8a3e29;border-radius:9px;font-size:16px;line-height:1.65;margin:22px 0 0;overflow-wrap:anywhere; }
+.velora-auth-error:focus { outline:0; }
+.velora-auth-link { font-size:18px;color:var(--auth-forest);text-decoration:underline;text-underline-offset:3px;padding:5px 0; }
+.velora-auth-note { font-size:15px;color:#77776e;line-height:1.7;margin-top:18px; }
+.velora-auth-note a { text-decoration:underline;text-underline-offset:3px; }
+.velora-auth-waves { position:absolute;bottom:-1px;left:0;width:100%;height:136px;z-index:-1;pointer-events:none; }
+.velora-auth-phone-label { color:var(--auth-forest);font-size:20px;font-weight:600;margin-bottom:12px; }
+.velora-auth-phone { min-height:62px;gap:15px;padding:0 18px; }
+.velora-auth-dial { position:relative;display:flex;align-items:center;gap:8px;flex:none;border-right:1px solid #e5e3e0;padding-right:18px;color:#1d261a; }
+.velora-auth-dial>span { font-size:19px; }
+.velora-auth-dial>svg { flex:none; }
+.velora-auth-dial>select { position:absolute;inset:-16px 0;width:100%;height:54px;opacity:0;cursor:pointer; }
+.velora-auth-dial:focus-within { outline:2px solid #95692d;outline-offset:5px;border-radius:2px; }
+.velora-auth-custom-code { margin-top:14px; }
+.velora-auth-phone-help { position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+.velora-auth-otp { padding:0;border:0;margin:0;min-width:0; }
+.velora-auth-otp legend { color:var(--auth-forest);font-size:19px;font-weight:500;margin-bottom:13px; }
+.velora-auth-digits { display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px; }
+.velora-auth-digits input { display:block;min-width:0;width:100%;height:62px;padding:0;text-align:center;border:1px solid #d8dace;border-radius:9px;background:#fffefa;color:#263a1b;font:400 29px Arial,sans-serif;font-variant-numeric:tabular-nums; }
+.velora-auth-digits input:focus { border-color:#526c3c;background:#fff;box-shadow:0 0 0 3px #405c2d10; }
+.velora-auth-otp-actions { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px; }
+.velora-auth-otp-actions button { display:inline-flex;align-items:center;gap:6px;font-size:16px;padding:9px 0;color:var(--auth-forest);min-height:40px; }
+.velora-auth-otp-help { font-size:15px;color:#76776d;line-height:1.7;margin-top:15px; }
+.velora-auth-development { padding:10px 13px;border:1px solid #dcd9c5;background:#f6f3e6;border-radius:8px;color:#736548;font-size:14px;line-height:1.6;margin-top:15px; }
+.velora-auth-success { display:flex;align-items:center;gap:8px;color:#3d5d2a;font-size:15px;margin-top:14px; }
+.velora-auth--verify .velora-auth-card { padding-bottom:112px; }
+.velora-auth--admin .velora-auth-card { max-width:682px;min-height:726px;padding:48px 82px 38px;border:2px solid #ffffffe0;border-radius:36px;background:linear-gradient(125deg,#fffefbc4,#fffdf6d9 48%,#fff3edb5);backdrop-filter:blur(24px);box-shadow:0 18px 60px #21150d25,0 0 2px 1px #fff7 inset; }
+.velora-auth--admin .velora-auth-brand { margin-bottom:24px; }
+.velora-auth--admin .velora-auth-heading h1 { font-size:54px;color:var(--auth-forest); }
+.velora-auth--admin .velora-auth-heading>p { font-size:22px;margin-top:8px; }
+.velora-auth--admin .velora-auth-form { margin-top:29px; }
+.velora-auth--admin .velora-auth-field+.velora-auth-field { margin-top:12px; }
+.velora-auth-remember-row { display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:18px; }
+.velora-auth-remember { display:inline-flex;align-items:center;gap:11px;font-size:18px;color:#151911;cursor:pointer; }
+.velora-auth-remember input { appearance:auto;flex:none;width:20px;height:20px;margin:0;accent-color:var(--auth-forest); }
+.velora-auth--admin .velora-auth-submit { min-height:58px;margin-top:32px;font-size:20px; }
+.velora-auth-security { display:flex;align-items:flex-start;justify-content:center;gap:10px;font-size:15px;line-height:1.6;color:#626466;margin-top:37px;text-align:center; }
+.velora-auth-security>svg { flex:none;margin-top:1px; }
+.velora-auth-recovery { padding:17px 18px;border:1px solid #d2d7c6;background:#f8f9f1cf;border-radius:11px;font-size:16px;line-height:1.7;margin-top:24px; }
+.velora-auth-recovery h2 { font:500 19px/1.5 Arial,sans-serif;letter-spacing:0;color:var(--auth-forest);margin-bottom:7px; }
+.velora-auth-recovery p { color:#646b5d;margin:0; }
+.velora-auth-recovery code { display:block;padding:10px 12px;margin:12px 0;font-size:15px;border:1px solid #dfe3d4;border-radius:5px;background:#fff;overflow-wrap:anywhere; }
+.velora-auth-loading { display:flex;align-items:center;justify-content:center;gap:12px;padding:45px 0;color:var(--auth-forest);font-size:18px; }
+@media(min-width:1700px) { .velora-auth {padding:64px 32px} }
+@media(max-width:700px) {
+ .velora-auth { padding:32px 20px;font-size:18px; }
+ .velora-auth-card { max-width:520px;min-height:620px;padding:44px 36px 126px;border-radius:30px; }
+ .velora-auth-brand { margin-bottom:45px; }
+ .velora-auth-brand>span { font-size:48px;letter-spacing:4px; }
+ .velora-auth-brand>small { font-size:11px;letter-spacing:5px;gap:12px;margin-top:10px; }
+ .velora-auth-brand i { width:34px; }
+ .velora-auth .velora-auth-heading h1 { font-size:47px;letter-spacing:-1px; }
+ .velora-auth-heading>p { font-size:19px;margin-top:12px; }
+ .velora-auth-form { margin-top:32px; }
+ .velora-auth-field>span,.velora-auth-field-label { font-size:17px; }
+ .velora-auth .velora-auth-control input { font-size:18px; }
+ .velora-auth-submit { font-size:19px;min-height:58px;padding:15px 43px; }
+ .velora-auth-submit>svg:last-child:not(.velora-auth-spinner) { right:22px;width:22px;height:22px; }
+ .velora-auth--admin .velora-auth-card { min-height:0;max-width:520px;padding:42px 36px 32px;border-radius:30px; }
+ .velora-auth--admin .velora-auth-brand { margin-bottom:34px; }
+ .velora-auth--admin .velora-auth-heading h1 { font-size:45px; }
+ .velora-auth--admin .velora-auth-heading>p { font-size:18px; }
+ .velora-auth--admin .velora-auth-submit { font-size:18px; }
+ .velora-auth-security { margin-top:28px;font-size:13px; }
+ .velora-auth-remember,.velora-auth-link { font-size:15px; }
+ .velora-auth--verify .velora-auth-card { padding-bottom:105px; }
+}
+@media(max-width:420px) {
+ .velora-auth { padding:24px 16px; }
+ .velora-auth-card { padding:40px 23px 120px;border-radius:27px;min-height:590px; }
+ .velora-auth-brand { margin-bottom:39px; }
+ .velora-auth-brand>span { font-size:43px;letter-spacing:3px; }
+ .velora-auth-brand>small { font-size:10px;letter-spacing:4px;gap:10px; }
+ .velora-auth-brand i { width:28px; }
+ .velora-auth .velora-auth-heading h1 { font-size:41px; }
+ .velora-auth-heading>p { font-size:17px; }
+ .velora-auth-control { gap:12px;padding:0 14px; }
+ .velora-auth-control>svg { width:19px;height:19px; }
+ .velora-auth-phone { gap:10px;min-height:58px; }
+ .velora-auth-dial { gap:5px;padding-right:10px; }
+ .velora-auth-dial>span { font-size:17px; }
+ .velora-auth-dial>svg { width:13px; }
+ .velora-auth .velora-auth-phone input { font-size:18px; }
+ .velora-auth-phone input::placeholder { font-size:16px; }
+ .velora-auth--admin .velora-auth-card { padding:38px 23px 28px;border-radius:27px; }
+ .velora-auth--admin .velora-auth-heading h1 { font-size:40px; }
+ .velora-auth--admin .velora-auth-form { margin-top:28px; }
+ .velora-auth-remember-row { gap:10px; }
+ .velora-auth-remember { gap:8px;font-size:14px; }
+ .velora-auth-remember input { width:18px;height:18px; }
+ .velora-auth-link { font-size:14px; }
+ .velora-auth-digits { gap:7px; }
+ .velora-auth-digits input { height:49px;font-size:25px; }
+ .velora-auth-otp-actions button { font-size:14px; }
+ .velora-auth-otp-help { font-size:14px; }
+ .velora-auth-waves { height:116px; }
+}
+@media(max-width:350px) {
+ .velora-auth { padding:20px 12px; }
+ .velora-auth-card,.velora-auth--admin .velora-auth-card { padding-left:19px;padding-right:19px; }
+ .velora-auth .velora-auth-heading h1 { font-size:37px; }
+ .velora-auth-phone>svg { display:none; }
+ .velora-auth-phone { padding:0 12px;gap:9px; }
+ .velora-auth .velora-auth-phone input { font-size:18px; }
+ .velora-auth-dial { padding-right:8px; }
+ .velora-auth-remember,.velora-auth-link { font-size:13px; }
+ .velora-auth-submit { font-size:17px;padding-left:35px;padding-right:35px; }
+}
+@media(prefers-reduced-motion:reduce) { .velora-auth * { transition:none!important; }.velora-auth-spinner { animation:none; } }

@@ -1,1 +1,54 @@
-{"name":"aurealis","version":"1.0.0","private":true,"scripts":{"dev":"next dev --hostname 0.0.0.0","build":"next build","start":"next start","lint":"eslint .","typecheck":"tsc --noEmit"},"dependencies":{"gsap":"^3.13.0","lucide-react":"^0.468.0","motion":"^12.0.0","next":"^15.5.0","react":"^19.1.0","react-dom":"^19.1.0","swiper":"^12.2.0","three":"^0.186.1"},"devDependencies":{"@tailwindcss/postcss":"^4.0.0","@types/node":"^22.0.0","@types/react":"^19.0.0","@types/react-dom":"^19.0.0","@types/three":"^0.186.0","eslint":"^9.0.0","eslint-config-next":"^15.5.0","tailwindcss":"^4.0.0","typescript":"^5.7.0"},"overrides":{"postcss":"^8.5.23"}}
+{
+  "name": "aurealis",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev-all.mjs",
+    "build": "node --import tsx scripts/check-deployment.ts && next build",
+    "start": "node scripts/dev-all.mjs --production",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "admin:create": "node --import tsx scripts/admin-create.ts",
+    "sms:setup": "node --import tsx scripts/sms-setup.ts",
+    "sms:check": "node --import tsx scripts/sms-setup.ts --check",
+    "test:backend": "node --import tsx --test tests/*.test.ts",
+    "test:integration": "node --import tsx scripts/test-integration.ts",
+    "dev:store": "node scripts/dev.mjs --surface storefront",
+    "dev:admin": "node scripts/dev.mjs --surface admin",
+    "start:store": "node scripts/dev.mjs --production --surface storefront",
+    "start:admin": "node scripts/dev.mjs --production --surface admin",
+    "test:split": "node --import tsx scripts/test-split.ts",
+    "test:offer": "node --import tsx scripts/test-offer.ts"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "lucide-react": "^0.468.0",
+    "motion": "^12.0.0",
+    "next": "^15.5.0",
+    "postgres": "^4.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.35.5",
+    "swiper": "^12.2.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.186.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.7.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.23"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

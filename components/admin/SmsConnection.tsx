@@ -1,0 +1,19 @@
+'use client';
+
+import {useState} from 'react';
+import {Check,CheckCircle2,Copy,ExternalLink,LoaderCircle,MessageSquare,ShieldCheck} from 'lucide-react';
+import type {IntegrationStatus} from '@/lib/commerce-types';
+
+export default function SmsConnection({status:provided}:{status:IntegrationStatus['smsDetails']|undefined}){
+ const status=provided||{mode:'unconfigured',scope:'localhost',missing:[],allowedCountries:['+91'],testNumbersRestricted:false};
+ const [checking,setChecking]=useState(false),[error,setError]=useState(''),[success,setSuccess]=useState(''),[copied,setCopied]=useState(false);
+ const ready=status.mode==='twilio'&&status.missing.length===0;
+ const check=async()=>{setChecking(true);setError('');setSuccess('');try{const response=await fetch('/api/admin/integrations/sms',{method:'POST'}),body=await response.json();if(!response.ok)throw new Error(body.error||'The provider could not be reached.');setSuccess(`${body.name}: connection verified, with six-digit verification codes. No SMS was sent.`)}catch(reason){setError(reason instanceof Error?reason.message:'The connection could not be checked.')}finally{setChecking(false)}};
+ const copy=async()=>{try{await navigator.clipboard.writeText('npm run sms:setup');setCopied(true)}catch{setError('Copy the setup command below and run it in your project terminal.')}};
+ return <section className="admin-sms-connection"><div className="admin-sms-heading"><span className="admin-sms-icon"><MessageSquare size={23}/></span><div><h3>Customer SMS sign-in</h3><p>Send real verification codes to mobile numbers from your local app.</p></div><span className={`admin-status ${ready?'admin-status-active':'admin-status-pending'}`}>{ready?'Provider configured':status.mode==='development'?'Terminal codes only':'Not configured'}</span></div>
+  <div className="admin-sms-facts"><span><ShieldCheck size={15}/>{status.scope==='localhost'?'Localhost-only delivery':'Delivery enabled for all configured environments'}</span><span>{status.testNumbersRestricted?'Restricted to your test numbers':'No test-number allowlist configured'}</span><span>Allowed country codes: {status.allowedCountries.join(', ')||'None'}</span></div>
+  {!ready&&<div className="admin-sms-setup"><div><strong>Connect real SMS in your local terminal</strong><p>The setup command verifies your Twilio service and saves credentials privately. The Auth Token is hidden as you type.</p><div className="admin-command-copy"><code>npm run sms:setup</code><button type="button" onClick={()=>void copy()} aria-label="Copy SMS setup command">{copied?<Check size={16}/>:<Copy size={16}/>} {copied?'Copied':'Copy'}</button></div>{status.missing.length>0&&<p className="admin-sms-missing">Missing: {status.missing.join(', ')}</p>}</div><ol><li>Create a Twilio Verify service with six-digit codes.</li><li>Enable the countries you want to test in Verify Geo Permissions.</li><li>Run setup with your credentials and your own test mobile numbers.</li><li>Restart the local app, check the connection, then sign in to your customer account.</li></ol></div>}
+  {error&&<p className="admin-error" role="alert">{error}</p>}{success&&<p className="admin-connection-success" role="status"><CheckCircle2 size={17}/>{success}</p>}
+  <div className="admin-sms-actions"><button type="button" className="admin-button admin-button-secondary" disabled={!ready||checking} onClick={()=>void check()}>{checking?<LoaderCircle size={16} className="admin-spin"/>:<CheckCircle2 size={16}/>} {checking?'Checking connection…':'Check SMS connection'}</button><a href="/account" target="_blank" rel="noreferrer" className="admin-text-button">Open customer sign-in <ExternalLink size={14}/></a><a href="https://www.twilio.com/docs/verify/api" target="_blank" rel="noreferrer" className="admin-text-button">Twilio setup documentation <ExternalLink size={14}/></a></div>
+ </section>;
+}

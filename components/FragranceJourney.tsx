@@ -6,8 +6,9 @@ import {useEffect,useRef,useState} from 'react';
 import {ArrowLeft,ArrowRight,Check,ChevronDown,Flower2,Image as ImageIcon,Layers3,Leaf,Move3D,Moon,ShoppingBag,Sun,Volume2,VolumeX} from 'lucide-react';
 import ProductCommerce,{useCommerce} from './ProductCommerce';
 import ReferenceImage from './ReferenceImage';
-import {money,products} from '@/lib/products';
-import {productDetails} from '@/lib/product-details';
+import {money,productPrice} from '@/lib/products';
+import {detailsForProduct} from '@/lib/product-details';
+import {useStorefront} from './StoreDataProvider';
 
 const HeroBottle=dynamic(()=>import('./HeroBottle'),{ssr:false,loading:()=> <div className="journey-model-loading"><Move3D size={30}/><span>Preparing your new perspective…</span></div>});
 const layers=[
@@ -17,6 +18,7 @@ const layers=[
 ] as const;
 
 function Journey(){
+  const {products}=useStorefront();
   const [productId,setProductId]=useState('velvet');
   const [layer,setLayer]=useState<(typeof layers)[number]['id']>('top');
   const [view,setView]=useState<'photo'|'3d'>('photo');
@@ -24,8 +26,8 @@ function Journey(){
   const [sound,setSound]=useState(false),[soundNotice,setSoundNotice]=useState(''),[added,setAdded]=useState(false);
   const audio=useRef<AudioContext|null>(null);
   const {add}=useCommerce();
-  const product=products.find(p=>p.id===productId)!;
-  const details=productDetails[productId];
+  const product=products.find(p=>p.id===productId)||products[0];
+  const details=product?detailsForProduct(product):null;
   const selectedLayer=layers.find(l=>l.id===layer)!;
   const LayerIcon=selectedLayer.Icon;
 
@@ -57,12 +59,13 @@ function Journey(){
     }
   };
 
+  if(!product||!details)return <main className="fragrance-journey"><h1>A new discovery is on its way.</h1><Link href="/shop">Explore the collection</Link></main>;
   return <main className="fragrance-journey">
     <div className="journey-introduction"><Link className="journey-back" href="/"><ArrowLeft size={14}/> Back to our world</Link><div><p className="journey-eyebrow">THE SENSORY EXPERIENCE</p><h1>The invisible,<br/><em>made visible.</em></h1></div><p>A little light. A different perspective. <br/>Discover the beautiful details <br/>behind your next signature.</p></div>
     <section className={`journey-experience journey-atmosphere-${atmosphere}`} aria-label="Interactive fragrance discovery">
       <div className="journey-visual">
         <div className="journey-stage" aria-label={`${product.name} ${view==='3d'?'three-dimensional bottle':'campaign photograph'}`}>
-          {view==='photo'?<div className="journey-photograph" key={product.id}><ReferenceImage region={product.id} alt={`${product.name} perfume bottle with its signature ingredients`} priority/></div>:<HeroBottle key={product.id} name={product.name} color={product.color} active/>}
+          {view==='photo'?<div className="journey-photograph" key={product.id}><ReferenceImage region={product.id} image={product.image} alt={`${product.name} perfume bottle with its signature ingredients`} priority/></div>:<HeroBottle key={product.id} name={product.name} color={product.color} active/>}
           <div className="journey-stage-top"><span>VELORA <i/> {view==='3d'?'THE BOTTLE IN 3D':'A MOMENT IN SCENT'}</span><button className="journey-sound" onClick={()=>void toggleSound()} aria-pressed={sound} aria-label={sound?'Turn ambient sound off':'Turn ambient sound on'}>{sound?<Volume2 size={17}/>:<VolumeX size={17}/>}<span>{sound?'Sound on':'Sound off'}</span></button></div>
           {view==='photo'&&<div className="journey-photo-caption"><span>{product.family}</span><strong>{product.name}</strong><p>{details.mood}</p></div>}
           <div className="journey-atmospheres" role="group" aria-label="Choose atmosphere"><button onClick={()=>setAtmosphere('dawn')} aria-pressed={atmosphere==='dawn'}><Sun size={14}/> Golden dawn</button><button onClick={()=>setAtmosphere('dusk')} aria-pressed={atmosphere==='dusk'}><Moon size={14}/> Evening glow</button></div>
@@ -76,7 +79,7 @@ function Journey(){
         <div className="journey-layer-tabs" role="group" aria-label="Choose a layer of the composition">{layers.map(l=><button key={l.id} aria-pressed={layer===l.id} onClick={()=>setLayer(l.id)}><span>{l.number}</span>{l.title}</button>)}</div>
         <div className="journey-note-story" aria-live="polite" aria-atomic="true" key={`${product.id}-${layer}`}><div className="journey-note-heading"><span><LayerIcon size={24} strokeWidth={1.2}/></span><p className="journey-eyebrow">{selectedLayer.eyebrow}</p></div><h3>{selectedLayer.heading}</h3><div className="journey-note-chips">{details[layer].map(note=><span key={note}>{note}</span>)}</div><p>{selectedLayer.description}</p></div>
         <p className="journey-product-description">{details.subtitle}</p>
-        <div className="journey-purchase"><div><strong>{money(product.price)}</strong><span>50 ml · Eau de parfum</span></div><button onClick={()=>{add(product.id);setAdded(true)}}>{added?<Check size={17}/>:<ShoppingBag size={17}/>}<span>{added?'Added to your bag':'Add to bag'}</span></button></div><Link className="journey-product-link" href={`/products/${product.id}`}>Discover {product.name}<ArrowRight size={16}/></Link>
+        <div className="journey-purchase"><div><strong>{money(productPrice(product))}</strong><span>50 ml · Eau de parfum</span></div><button disabled={product.stock!==undefined&&product.stock<1} onClick={()=>{if(add(product.id))setAdded(true)}}>{added?<Check size={17}/>:<ShoppingBag size={17}/>}<span>{product.stock!==undefined&&product.stock<1?'Sold out':added?'Added to your bag':'Add to bag'}</span></button></div><Link className="journey-product-link" href={`/products/${product.id}`}>Discover {product.name}<ArrowRight size={16}/></Link>
       </div>
     </section>
     <section className="journey-details" aria-label="Ways to explore your fragrance">

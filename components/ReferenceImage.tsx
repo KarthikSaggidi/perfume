@@ -1,7 +1,8 @@
 import Image from 'next/image';
 const regions:Record<string,[number,number,number,number]>={allcircle:[76,486,54,54],woodcircle:[250,487,53,53],freshcircle:[398,486,54,54],spicecircle:[531,486,54,54],citruscircle:[677,486,54,54],giftcircle:[812,486,54,54],hero:[422,113,411,335],noir:[86,639,201,173],ocean:[307,639,201,173],amber:[527,639,201,173],flora:[747,639,198,173],campaign:[59,977,506,255],signature:[76,1389,210,118],fresh:[300,1389,207,118],spicy:[523,1389,205,118],gifts:[746,1389,210,118]};
 /** Display exact regions of the supplied reference without altering its pixels. */
-export default function ReferenceImage({region,alt,className='',priority=false}:{region:string;alt:string;className?:string;priority?:boolean}){
+export default function ReferenceImage({region,alt,className='',priority=false,image}:{region:string;alt:string;className?:string;priority?:boolean;image?:string}){
+ if(image)return <div className={`reference-crop ${className}`}><Image src={image} alt={alt} fill priority={priority} unoptimized sizes="(max-width:760px) 100vw, 50vw" style={{objectFit:'cover'}}/></div>;
  const veloraAssets:Record<string,string>={velvet:'bloom',noir:'noir',flora:'celeste',amber:'oud',ocean:'hero',floral:'bloom',signature:'noir',fresh:'celeste',spicy:'oud',gourmand:'gourmand',gifts:'story',hero:'hero',campaign:'story'};
  if(veloraAssets[region])return <div className={`reference-crop ${className}`}><Image src={`/images/velora-${veloraAssets[region]}.webp`} alt={alt} fill priority={priority} sizes="(max-width:760px) 100vw, 50vw" quality={90} style={{objectFit:'cover',objectPosition:region==='ocean'?'63% center':undefined}}/></div>;
  if(region==='floral')return <div className={`reference-crop ${className}`}><Image src="/images/velvet-campaign.png" alt={alt} fill priority={priority} sizes="(max-width:760px) 100vw, 50vw" style={{objectFit:'cover'}}/></div>;

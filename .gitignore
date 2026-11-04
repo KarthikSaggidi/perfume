@@ -1,8 +1,16 @@
 node_modules/
 .next/
-.next-dev/
+.next-dev*/
 .env*
 *.tsbuildinfo
 .DS_Store
 
 .next-production/
+
+# Private application data and local admin/test sessions
+.velora/
+.next-admin/
+!.env.example
+
+# Vercel local links and pulled environment files
+.vercel/

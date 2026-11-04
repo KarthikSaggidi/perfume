@@ -1,0 +1,24 @@
+import type {Product,BottleSize} from './products';
+export type AdminRole='owner'|'manager'|'support';
+export type OrderStatus='pending'|'confirmed'|'processing'|'shipped'|'delivered'|'cancelled';
+export type PaymentStatus='unpaid'|'paid'|'refunded';
+export interface StoreProduct extends Product {sku:string;description:string;image:string;stock:number;status:'active'|'draft'|'archived';featured:boolean;topNotes:string[];heartNotes:string[];baseNotes:string[];createdAt:string;updatedAt:string}
+export interface Poster {id:string;name:string;eyebrow:string;title:string;description:string;image:string;mobileImage:string;buttonText:string;buttonLink:string;productId:string;active:boolean;position:number;startsAt:string;endsAt:string;createdAt:string;updatedAt:string}
+export interface Address {id:string;label:string;name:string;phone:string;line1:string;line2:string;city:string;state:string;postalCode:string;country:string;isDefault:boolean}
+export interface AccountReview {id:string;productId:string;rating:number;title:string;body:string;createdAt:string;updatedAt:string}
+export interface Customer {id:string;phone:string;name:string;email:string;addresses:Address[];wishlist:string[];tags:string[];notes:string;marketingConsent:boolean;status:'active'|'blocked';createdAt:string;updatedAt:string;lastLoginAt:string;reviews?:AccountReview[];rewardsJoinedAt?:string}
+export interface PublicCustomer {id:string;phone:string;name:string;email:string;addresses:Address[];wishlist:string[];marketingConsent:boolean;createdAt:string;reviews?:AccountReview[];rewardsJoinedAt?:string}
+export interface AdminUser {id:string;name:string;email:string;username?:string;role:AdminRole;passwordHash:string;active:boolean;createdAt:string;updatedAt:string}
+export type PublicAdmin=Omit<AdminUser,'passwordHash'>;
+export interface OrderLine {productId:string;name:string;sku:string;image:string;size:BottleSize;quantity:number;unitPrice:number;total:number}
+export interface OrderEvent {status:OrderStatus;note:string;createdAt:string}
+export interface Order {id:string;number:string;customerId:string;customerName:string;phone:string;email:string;items:OrderLine[];address:Address;subtotal:number;shipping:number;tax:number;total:number;status:OrderStatus;paymentStatus:PaymentStatus;paymentMethod:'cod';trackingNumber:string;trackingUrl:string;carrier:string;internalNote:string;customerNote:string;idempotencyKey?:string;offer?:{label:string;percent:number;discount:number;originalSubtotal:number};events:OrderEvent[];createdAt:string;updatedAt:string}
+export interface OfferLead {id:string;name:string;phone:string;email:string;marketingConsent:boolean;source:'diwali-popup';status:'new'|'contacted'|'converted'|'archived';notes:string;customerId?:string;createdAt:string;updatedAt:string}
+export interface OfferClaim {id:string;leadId:string;hash:string;expiresAt:string;createdAt:string}
+export interface PublicFestivalOffer {active:boolean;unlocked:boolean;percent:number;productIds:string[];freeShipping:boolean;endsAt:string;requiresPhoneMatch?:boolean}
+export interface StoreSettings {festivalOfferEnabled?:boolean;festivalOfferPercent?:number;festivalOfferProductIds?:string[];festivalOfferStartsAt?:string;festivalOfferEndsAt?:string;festivalOfferFreeShipping?:boolean;storeName:string;storeEmail:string;storePhone:string;currency:'INR';description:string;shippingFee:number;freeShippingThreshold:number;taxRate:number;codEnabled:boolean;lowStockThreshold:number;orderPrefix:string;announcement:string;supportEmail:string;instagram:string;address:string;maintenanceMode:boolean;allowCustomerSignup:boolean}
+export interface Activity {id:string;actor:string;action:string;entity:string;createdAt:string}
+export interface IntegrationStatus {database:'postgres'|'local';sms:'twilio'|'development'|'unconfigured';smsDetails:{mode:'twilio'|'development'|'unconfigured';scope:'localhost'|'all';missing:string[];allowedCountries:string[];testNumbersRestricted:boolean};media:'database'|'local';productionReady:boolean}
+export interface AdminBootstrap {leads?:OfferLead[];admin:PublicAdmin;products:StoreProduct[];posters:Poster[];orders:Order[];customers:Customer[];settings:StoreSettings;activities:Activity[];integrations:IntegrationStatus;team:PublicAdmin[]}
+export interface PublicCatalog {offer?:PublicFestivalOffer;products:StoreProduct[];posters:Poster[];settings:Pick<StoreSettings,'storeName'|'description'|'shippingFee'|'freeShippingThreshold'|'taxRate'|'codEnabled'|'announcement'|'supportEmail'|'maintenanceMode'>}
+export interface AuthSession {user:PublicCustomer|null;admin:PublicAdmin|null}

@@ -16,3 +16,9 @@ export const chapters = [
  {title:'The philosophy',label:'A fragrance for every you.',time:'00:11',text:'More than an accessory. An intimate part of your everyday ritual.'},
  {title:'Your next chapter',label:'Make it yours.',time:'00:13',text:'Discover your scent. Tell your story.'},
 ];
+
+/** Use the managed composition for new products and keep original scent copy as a fallback. */
+export function detailsForProduct(product:import('./products').Product){
+ const seed=Object.prototype.hasOwnProperty.call(productDetails,product.id)?productDetails[product.id]:{subtitle:'A signature that feels like you.',description:'An expressive composition from the Velora collection.',mood:product.family,top:[],heart:[],base:[],occasion:'Your everyday ritual',color:product.color};
+ return {...seed,description:product.description??seed.description,top:product.topNotes??seed.top,heart:product.heartNotes??seed.heart,base:product.baseNotes??seed.base,color:product.color||seed.color};
+}

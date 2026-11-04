@@ -1,0 +1,23 @@
+/* Autofill must not paint a blue/yellow rectangle over our form surfaces.
+   Clip the browser's enforced autofill background to the glyphs, then use
+   the surrounding form's text colour. Keep autocomplete and focus outlines. */
+:is(input, textarea, select):-webkit-autofill,
+:is(input, textarea, select):-webkit-autofill:hover,
+:is(input, textarea, select):-webkit-autofill:focus,
+:is(input, textarea, select):-webkit-autofill:active {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  background-color: transparent !important;
+  -webkit-text-fill-color: inherit !important;
+  caret-color: inherit;
+}
+
+:is(input, textarea, select):autofill,
+:is(input, textarea, select):autofill:hover,
+:is(input, textarea, select):autofill:focus,
+:is(input, textarea, select):autofill:active {
+  background-clip: text !important;
+  background-color: transparent !important;
+  -webkit-text-fill-color: inherit !important;
+  caret-color: inherit;
+}

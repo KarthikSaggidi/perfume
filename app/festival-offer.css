@@ -1,0 +1,77 @@
+.diwali-offer-trigger {position:fixed;bottom:24px;left:24px;z-index:45;display:flex;align-items:center;gap:9px;padding:12px 18px;border:1px solid #f5d7a8;border-radius:30px;background:linear-gradient(115deg,#663a20,#3a2012);box-shadow:0 5px 24px #381e1733;color:#fff5e4;font:500 14px/1.3 Arial,sans-serif;}
+.diwali-offer-trigger[hidden] {display:none;}
+.diwali-offer-trigger.is-unlocked {background:linear-gradient(110deg,#284a39,#183e2d);border-color:#abc3a3;}
+.diwali-dialog {border:1px solid #fff1d8;border-radius:30px;padding:0;width:min(1130px,calc(100vw - 48px));max-width:none;max-height:calc(100dvh - 40px);margin:auto;background:#f8eee3;color:#3f1d11;box-shadow:0 30px 100px #0005;overflow:auto;overscroll-behavior:contain;}
+.diwali-dialog::backdrop {background:#17120ec2;backdrop-filter:blur(2px);}
+.diwali-panel {display:grid;grid-template-columns:49% minmax(0,1fr);min-height:744px;}
+.diwali-art {position:relative;min-height:100%;background:#e2c5a0;}
+.diwali-art>img {object-fit:cover;object-position:49% center;}
+.diwali-content {position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:29px 42px 21px;background:radial-gradient(at 20% 10%,#fffaf3c4,transparent 60%),radial-gradient(at 100% 80%,#e5ccb3a3,transparent 60%),#f9f2ea;}
+.diwali-close {position:absolute;right:17px;top:17px;display:grid;place-items:center;width:42px;height:42px;min-width:42px;border-radius:50%;background:#fffdf6dd;box-shadow:0 4px 15px #6c492016;color:#4b281a;z-index:2;}
+.diwali-wordmark {font:400 40px/1.1 Georgia,serif;letter-spacing:3px;text-align:center;}
+.diwali-wordmark>span {display:block;font:500 9px/2.5 Arial,sans-serif;letter-spacing:6px;margin-left:6px;}
+.diwali-diya {width:170px;height:46px;margin:8px auto 5px;flex:none;}
+.diwali-content h2 {font:400 clamp(36px,3.6vw,50px)/1.05 Georgia,serif;letter-spacing:-1.6px;text-align:center;margin:0;color:#462111;}
+.diwali-content h2 em {display:block;font-size:.78em;font-weight:400;line-height:1.2;color:#976134;letter-spacing:-1px;margin-top:3px;}
+.diwali-content>p {font:400 17px/1.5 Arial,sans-serif;text-align:center;max-width:430px;margin:13px 0 18px;color:#5a3529;}
+.diwali-discount {position:relative;display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:9px;width:100%;border:1px solid #c48c4f;border-radius:32px;padding:4px 12px 11px;background:#fffaf540;margin:0 0 20px;}
+.diwali-discount:before,.diwali-discount:after {content:'✧';position:absolute;top:24px;background:#f9f2e9;color:#b47b3e;font:30px Georgia;line-height:1;}
+.diwali-discount:before {left:-11px;}.diwali-discount:after {right:-11px;}
+.diwali-discount>span {font:500 25px/1 Arial,sans-serif;letter-spacing:1px;}
+.diwali-discount>strong {font:italic 500 62px/1.1 Georgia,serif;letter-spacing:-2px;}
+.diwali-discount>small {flex-basis:100%;font:400 11px/1.3 Arial,sans-serif;letter-spacing:3px;text-align:center;}
+.diwali-form,.diwali-revealed {width:100%;}
+.diwali-input {display:flex;align-items:center;gap:15px;min-height:43px;margin-bottom:10px;padding:0 16px;border:1px solid #d2bba6;border-radius:26px;background:#fffaf34d;color:#583527;}
+.diwali-input>svg {flex:none;}
+.diwali-input input {min-width:0;width:100%;height:42px;background:transparent;border:0;outline:0;font:400 16px Arial,sans-serif;color:#382419;}
+.diwali-input:focus-within {outline:2px solid #a47844;outline-offset:2px;}
+.diwali-input input::placeholder {color:#624d40;opacity:1;}
+.diwali-input input:disabled {color:#766a60;cursor:default;}
+.diwali-country {padding-right:13px;border-right:1px solid #bb9980;font:400 15px Arial,sans-serif;}
+.diwali-honeypot {position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+.diwali-consent {display:flex;align-items:flex-start;gap:8px;margin:9px 3px 13px;font:400 12px/1.5 Arial,sans-serif;color:#745442;}
+.diwali-consent input {flex:none;margin:2px 0 0;accent-color:#835634;width:15px;height:15px;}
+.diwali-consent small {font-size:11px;}
+.diwali-submit {display:flex;align-items:center;justify-content:center;gap:14px;border:1px solid #fff0da73;border-radius:30px;min-height:47px;width:100%;padding:11px 17px;background:linear-gradient(165deg,#a77852 0%,#6e4329 37%,#422311 100%);box-shadow:inset 0 1px 2px #fff4dc33;color:#fff7e9;font:500 15px/1.4 Arial,sans-serif;letter-spacing:1.2px;text-transform:uppercase;text-align:center;}
+.diwali-submit:disabled {opacity:.7;cursor:wait;}.diwali-submit>svg {flex:none;}
+.diwali-terms {font:400 11px/1.6 Arial,sans-serif;color:#8b715b;text-align:center;margin:10px 0 0;}
+.diwali-terms a {text-decoration:underline;}
+.diwali-benefits {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:6px;margin-top:19px;color:#684028;}
+.diwali-benefits>div {position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;font:400 13px/1.45 Arial,sans-serif;}
+.diwali-benefits>div:not(:last-child):after {content:'';position:absolute;right:0;top:14px;height:42px;width:1px;background:#ba9572;}
+.diwali-shipping-note {font:400 10px/1.4 Arial,sans-serif;text-align:center;color:#9c836d;margin-top:12px;}
+.diwali-error {font:400 13px/1.5 Arial,sans-serif;color:#8c2f27;padding:10px;background:#f9e6db;border-radius:8px;margin-bottom:12px;}
+.diwali-success-note {display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font:400 13px/1.5 Arial,sans-serif;color:#3f6144;margin-bottom:17px;}
+.diwali-success-note>svg {flex:none;}
+.diwali-preview-products {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px;}
+.diwali-preview-products>a {display:block;min-width:0;}
+.diwali-preview-products>a>span {position:relative;display:block;aspect-ratio:1;overflow:hidden;border-radius:10px;background:#e8d8c7;}
+.diwali-preview-products img {object-fit:cover;}
+.diwali-preview-products b {position:absolute;left:0;bottom:0;right:0;background:#8c5f2ae6;font:500 10px/1.5 Arial,sans-serif;letter-spacing:.7px;color:#fff6e1;padding:3px;text-align:center;}
+.diwali-preview-products>a>strong {display:block;font:500 12px/1.4 Arial,sans-serif;margin:7px 0 3px;}
+.diwali-preview-products small {display:block;font:500 11px/1.5 Arial,sans-serif;color:#55311c;}
+.diwali-preview-products del {color:#a08977;font-size:10px;}
+.festival-product-ribbon {position:absolute;left:0;top:15px;z-index:2;max-width:calc(100% - 40px);background:linear-gradient(110deg,#a97526,#e4c079,#b88332);color:#2f1a08;font:600 11px/1.5 Arial,sans-serif;letter-spacing:.65px;padding:6px 17px 6px 12px;clip-path:polygon(0 0,100% 0,calc(100% - 9px) 50%,100% 100%,0 100%);pointer-events:none;}
+.festival-card-price {display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.festival-card-price>del {font-size:12px;color:#9b8b7d;}
+.festival-card-price>strong {font-size:17px;line-height:1.4;}
+.festival-original-price {font:400 19px Arial,sans-serif;color:#a58a74;display:block;margin-bottom:7px;}
+.detail-gallery-stage>.festival-product-ribbon {top:55px;font-size:13px;}
+.festival-checkout-savings,.festival-checkout-savings strong {color:#326542!important;}
+.admin-lead-status {display:inline-flex;border-radius:20px;padding:5px 11px;font-size:12px;text-transform:capitalize;background:#edf1e9;color:#466849;}
+.admin-lead-new {background:#fff0cc;color:#86601d;}.admin-lead-archived {background:#eceae7;color:#77736c;}.admin-lead-converted {background:#e0efd8;color:#375b29;}
+.admin-offer-products {border:1px solid #e3e6dc;border-radius:12px;padding:18px;margin:0;}
+.admin-offer-products legend {font-size:15px;color:#2c5033;padding:0 6px;}
+.admin-offer-products>p {font-size:13px;color:#7a8376;line-height:1.6;margin-bottom:12px;}
+.admin-offer-products>label {display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:11px 0;border-top:1px solid #edece3;font-size:14px;}
+.admin-offer-products input {width:17px;height:17px;accent-color:#325c37;}
+.admin-offer-products small {margin-left:auto;font-size:12px;color:#8c9486;}
+.admin-settings-form:not([data-area=all]):not([data-area=offers]) .admin-settings-offers {display:none;}
+.admin-settings-form[data-area=offers] :is(.admin-settings-identity,.admin-settings-grid,.admin-settings-connections) {display:none;}
+@keyframes diwali-spin {to {transform:rotate(360deg);}}
+.diwali-spin {animation:diwali-spin 1s linear infinite;}
+@media(max-width:1000px) {.diwali-content {padding:35px 27px 23px;}.diwali-wordmark {font-size:35px;}.diwali-panel {min-height:710px;}.diwali-content>p {font-size:15px;}.diwali-discount>strong {font-size:54px;}.diwali-discount>span {font-size:22px;}.diwali-content h2 {font-size:39px;}.diwali-submit {font-size:13px;letter-spacing:.8px;}}
+@media(max-width:700px) {.diwali-dialog {width:calc(100vw - 26px);max-height:calc(100dvh - 28px);border-radius:22px;}.diwali-panel {display:block;min-height:0;}.diwali-art {height:190px;min-height:0;}.diwali-art>img {object-position:50% 64%;}.diwali-content {padding:23px 27px 20px;}.diwali-close {position:fixed;right:26px;top:26px;background:#fffaf4e8;}.diwali-wordmark {font-size:30px;}.diwali-wordmark>span {font-size:8px;letter-spacing:4px;line-height:2.4;}.diwali-diya {height:32px;width:137px;margin:4px auto;}.diwali-content h2 {font-size:36px;}.diwali-content>p {font-size:15px;line-height:1.5;margin:11px 0 15px;}.diwali-discount {margin-bottom:17px;}.diwali-discount>strong {font-size:50px;}.diwali-discount>span {font-size:21px;}.diwali-discount>small {font-size:9px;letter-spacing:2px;}.diwali-input {min-height:44px;padding:0 13px;gap:11px;}.diwali-input input {font-size:16px;}.diwali-submit {font-size:13px;min-height:48px;letter-spacing:.7px;}.diwali-benefits {margin-top:17px;}.diwali-benefits>div {font-size:12px;}.diwali-offer-trigger {bottom:88px;left:14px;padding:10px 14px;font-size:12px;}.diwali-preview-products {gap:8px;}.diwali-preview-products>a>strong {font-size:11px;}.diwali-preview-products small {font-size:10px;}.diwali-preview-products del {display:block;}.festival-product-ribbon {font-size:10px;top:12px;letter-spacing:.2px;padding:5px 14px 5px 8px;}.festival-card-price>strong {font-size:16px;}.festival-card-price>del {font-size:11px;}}
+@media(max-width:360px) {.diwali-art {height:135px;}.diwali-content {padding:22px 20px 18px;}.diwali-content h2 {font-size:32px;}.diwali-content>p {font-size:14px;}.diwali-discount>span {font-size:18px;}.diwali-discount>strong {font-size:46px;}.diwali-submit {font-size:12px;gap:7px;}.diwali-benefits>div {font-size:11px;}}
+@media(max-height:760px) and (min-width:701px) {.diwali-panel {min-height:660px;}.diwali-content {padding-top:22px;padding-bottom:18px;}.diwali-wordmark {font-size:33px;}.diwali-diya {height:35px;margin:4px auto;}.diwali-content h2 {font-size:38px;}.diwali-content>p {font-size:15px;margin:11px 0 14px;}.diwali-discount {margin-bottom:15px;}.diwali-discount>strong {font-size:53px;}.diwali-benefits {margin-top:14px;}}
+@media(prefers-reduced-motion:reduce) {.diwali-spin {animation:none;}}

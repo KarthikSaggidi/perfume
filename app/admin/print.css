@@ -1,0 +1,77 @@
+body:has(.admin-print-page) { background:#eef1eb!important; }
+.admin-print-page { padding:24px 20px 45px;color:#263c2c;font:14px/1.55 Arial,Helvetica,sans-serif;min-height:100svh; }
+.admin-print-controls { max-width:1100px;margin:0 auto 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap; }
+.admin-print-controls a,.admin-print-controls button { display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:8px;border:1px solid #cdd7ca;background:#fff;color:#264a32;font:500 13px/1.5 Arial,sans-serif; }
+.admin-print-controls button { margin-left:auto;background:#224a32;color:#fff;border-color:#224a32; }
+.admin-print-controls p { flex:1;color:#6a7a68;font-size:12px;line-height:1.5; }
+.admin-print-document { max-width:1100px;margin:auto;padding:35px;background:#fff;box-shadow:0 8px 45px #2331240d; }
+.admin-print-document.is-order { max-width:780px; }
+.admin-print-brand { display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-bottom:19px;border-bottom:2px solid #254d34; }
+.admin-print-brand strong { display:block;font:400 29px/1.2 Georgia,serif;letter-spacing:3px; }
+.admin-print-brand span { display:block;color:#72816d;font-size:11px;margin-top:5px; }
+.admin-print-brand>p { color:#73806e;font-size:11px;text-align:right; }
+.admin-print-title { margin:24px 0; }
+.admin-print-title h1 { font:500 32px/1.2 Georgia,serif;letter-spacing:-.6px;color:#233d2b;overflow-wrap:anywhere; }
+.admin-print-filters,.admin-print-title>p { color:#71806c;font-size:12px;line-height:1.65;margin-top:9px;overflow-wrap:anywhere; }
+.admin-print-count { color:#6e7d69;font-size:12px;margin-bottom:13px; }
+.admin-print-table { width:100%;border-collapse:collapse;table-layout:fixed;white-space:normal;font:12px/1.5 Arial,sans-serif;color:#293c2c; }
+.admin-print-table th { background:#f0f4ec;color:#3d583d;font-weight:600;text-align:left;padding:10px 8px;border:1px solid #dce4d7;overflow-wrap:anywhere; }
+.admin-print-table td { vertical-align:top;padding:10px 8px;border:1px solid #e1e7dd;overflow-wrap:anywhere;white-space:pre-line; }
+.admin-print-table td small { display:block;color:#7b8576;font-size:11px;margin-top:4px; }
+.admin-print-table td.is-number { font-variant-numeric:tabular-nums; }
+.admin-print-table tbody tr:nth-child(even) { background:#fbfcf9; }
+.admin-print-table-settings th:first-child { width:30%; }
+.admin-print-table-activity th:nth-child(2) { width:30%; }
+.admin-print-table-leads th:nth-child(6) { width:23%; }
+.admin-print-empty { padding:26px 18px;border:1px solid #e1e7dc;background:#fafbf8;color:#6e7e69;font-size:13px; }
+.admin-print-metrics { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:12px; }
+.admin-print-metrics>div { border:1px solid #dae4d5;padding:15px 14px;background:#f8faf5; }
+.admin-print-metrics span { display:block;color:#687a61;font-size:11px; }
+.admin-print-metrics strong { display:block;font:500 25px/1.4 Georgia,serif;overflow-wrap:anywhere;margin-top:8px; }
+.admin-print-note { font-size:11px;line-height:1.65;color:#7c8974;margin:14px 0; }
+.admin-print-section { margin-top:25px; }
+.admin-print-section h2,.admin-print-addresses h2 { font:500 22px/1.3 Georgia,serif;letter-spacing:-.3px;color:#2a4932;margin-bottom:12px; }
+.admin-print-section>p,.admin-print-addresses p { color:#4e624b;font-size:13px;line-height:1.8; }
+.admin-print-chart { display:block;width:100%;max-height:180px;margin:15px 0 20px; }
+.admin-print-report-grid { display:grid;grid-template-columns:1fr 1fr;gap:22px; }
+.admin-print-footer { display:flex;justify-content:space-between;gap:16px;border-top:1px solid #dce4d7;margin-top:30px;padding-top:13px;color:#7b8974;font-size:10px; }
+.admin-print-order-meta { display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:17px 20px;background:#f5f8f1;border:1px solid #e0e7d9; }
+.admin-print-order-meta span { display:block;color:#819077;font-size:11px;margin-bottom:6px; }
+.admin-print-order-meta strong { display:block;font-size:16px;color:#284530; }
+.admin-print-order-meta p { font-size:11px;color:#72836a;line-height:1.65;margin-top:7px; }
+.admin-print-addresses { display:grid;grid-template-columns:1fr 1fr;gap:30px;margin:25px 0; }
+.admin-print-order-items th:first-child { width:35%; }
+.admin-print-order-items th:nth-child(2) { width:13%; }
+.admin-print-order-items td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+.admin-print-order-totals { max-width:390px;margin:22px 0 26px auto; }
+.admin-print-order-totals>div { display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:7px 0;font-size:13px; }
+.admin-print-order-totals dd { margin:0;text-align:right;white-space:nowrap; }
+.admin-print-order-totals .is-total { border-top:2px solid #3b6243;padding-top:12px;margin-top:7px;font-size:18px;font-weight:600;color:#264b31; }
+.admin-print-preserve { white-space:pre-wrap;overflow-wrap:anywhere; }
+@media(max-width:700px) { .admin-print-page { padding:15px 10px 30px; }.admin-print-controls { gap:10px; }.admin-print-controls p { flex-basis:100%;order:3; }.admin-print-document { padding:21px 13px; }.admin-print-brand { flex-wrap:wrap;gap:12px; }.admin-print-title h1 { font-size:27px; }.admin-print-table { font-size:10px; }.admin-print-table :is(th,td) { padding:7px 4px; }.admin-print-metrics { grid-template-columns:repeat(2,minmax(0,1fr));gap:8px; }.admin-print-report-grid { grid-template-columns:1fr; }.admin-print-order-meta,.admin-print-addresses { gap:17px; }.admin-print-footer { flex-wrap:wrap; } }
+@page { size:A4 landscape;margin:12mm; }
+@page velora-order { size:A4 portrait;margin:14mm; }
+@media print {
+ html,body { background:#fff!important;height:auto!important;min-height:0!important;overflow:visible!important;margin:0!important;padding:0!important; }
+ .admin-print-page { padding:0!important;min-height:0!important;background:#fff!important;color:#172b1c;print-color-adjust:exact;-webkit-print-color-adjust:exact; }
+ .admin-print-controls { display:none!important; }
+ .admin-print-document { max-width:none!important;min-width:0!important;width:100%!important;margin:0!important;padding:0!important;box-shadow:none!important; }
+ .admin-print-document.is-order { page:velora-order; }
+ .admin-print-title { margin:7mm 0 5mm; }
+ .admin-print-title h1 { font-size:23pt; }
+ .admin-print-brand strong { font-size:23pt; }
+ .admin-print-brand>p,.admin-print-brand span,.admin-print-count,.admin-print-filters,.admin-print-title>p { font-size:9pt; }
+ .admin-print-table { font-size:9pt;line-height:1.4;overflow:visible!important; }
+ .admin-print-table :is(th,td) { padding:2.5mm 2mm; }
+ .admin-print-table thead { display:table-header-group; }
+ .admin-print-table tfoot { display:table-footer-group; }
+ .admin-print-table tr { break-inside:avoid;page-break-inside:avoid; }
+ .admin-print-table thead tr,.admin-print-brand,.admin-print-order-meta,.admin-print-addresses,.admin-print-metrics,.admin-print-order-totals,.admin-print-chart { break-inside:avoid;page-break-inside:avoid; }
+ .admin-print-section h2 { break-after:avoid;page-break-after:avoid;font-size:16pt; }
+ .admin-print-report-grid { grid-template-columns:1fr 1fr; }
+ .admin-print-metrics { grid-template-columns:repeat(5,minmax(0,1fr)); }
+ .admin-print-metrics strong { font-size:20pt; }
+ .admin-print-section>p,.admin-print-addresses p { font-size:10pt; }
+ .admin-print-note,.admin-print-footer { font-size:8pt; }
+ .admin-print-footer { break-inside:avoid; }
+}

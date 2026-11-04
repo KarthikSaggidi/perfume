@@ -1,0 +1,5 @@
+'use client';
+import {useStorefront} from './StoreDataProvider';
+import GlassProductCard from './GlassProductCard';
+const familyTerms:Record<string,string[]>={floral:['floral'],fresh:['fresh','citrus'],signature:['woody','oriental'],spicy:['spicy','oriental'],citrus:['citrus'],gourmand:['vanilla','gourmand'],gifts:[]};
+export default function ManagedCollection({ids,slug}:{ids:string[];slug:string}){const {products}=useStorefront(),terms=familyTerms[slug]||[];const selection=products.filter(p=>ids.includes(p.id)||(slug==='gifts')||terms.some(term=>`${p.family} ${p.notes}`.toLowerCase().includes(term)));return <><div className="glass-section-title collection-products-heading"><h2>THE EDIT</h2><span>{selection.length} expressions</span></div><div className="glass-products-grid">{selection.map(product=><GlassProductCard product={product} key={product.id}/>)}</div>{!selection.length&&<p className="catalog-demo">A new collection is taking shape. Explore our other fragrances while we prepare it.</p>}</>}
