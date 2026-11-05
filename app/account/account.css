@@ -38,7 +38,7 @@
 
 /* Mobile verification. */
 .customer-account .account-signin{display:grid;grid-template-columns:1fr 1fr;max-width:1120px;margin:0 auto 16px;border:1px solid #e8dccc;border-radius:19px;overflow:hidden;background:#fffaf2;box-shadow:0 18px 60px #74563308;min-height:650px}
-.customer-account .account-signin-art{position:relative;isolation:isolate;background:#d6b499 url('/images/velora-hero.webp') 63% center/cover;min-height:100%}
+.customer-account .account-signin-art{position:relative;isolation:isolate;background:#d6b499 url('/images/alora-hero.webp') 63% center/cover;min-height:100%}
 .customer-account .account-signin-art:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#221b16ed,#28201854 47%,#ebd5ba06);z-index:-1}
 .customer-account .account-signin-art-copy{position:absolute;left:40px;right:30px;bottom:43px;color:#fbecda}
 .customer-account .account-signin-art-copy .account-eyebrow{font-size:10px;color:#edc792;letter-spacing:2.6px;margin-bottom:19px}

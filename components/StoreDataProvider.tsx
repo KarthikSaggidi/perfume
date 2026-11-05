@@ -3,7 +3,7 @@ import {createContext,useCallback,useContext,useEffect,useRef,useState,type Reac
 import {products as seedProducts,type Product} from '@/lib/products';
 import type {AuthSession,Poster,PublicCatalog,PublicCustomer} from '@/lib/commerce-types';
 type StoreData={products:Product[];posters:Poster[];settings:PublicCatalog['settings'];loaded:boolean;offer?:PublicCatalog['offer'];user:PublicCustomer|null;authLoading:boolean;refresh:()=>Promise<void>;refreshAuth:()=>Promise<void>};
-const defaults:PublicCatalog['settings']={storeName:'Velora',description:'Scents beyond boundaries.',shippingFee:0,freeShippingThreshold:0,taxRate:0,codEnabled:false,announcement:'',supportEmail:'',maintenanceMode:false};
+const defaults:PublicCatalog['settings']={storeName:'ALORA',description:'Scents beyond boundaries.',shippingFee:0,freeShippingThreshold:0,taxRate:0,codEnabled:false,announcement:'',supportEmail:'',maintenanceMode:false};
 const StoreContext=createContext<StoreData>({products:seedProducts,posters:[],settings:defaults,loaded:false,offer:undefined,user:null,authLoading:true,refresh:async()=>{},refreshAuth:async()=>{}});
 export const useStorefront=()=>useContext(StoreContext);
 export default function StoreDataProvider({children}:{children:ReactNode}){

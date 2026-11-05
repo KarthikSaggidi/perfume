@@ -17,5 +17,6 @@ import './storefront-responsive.css';
 import './festival-offer.css';
 import './form-autofill.css';
 import './why-velora.css';
-export const metadata: Metadata = {title:'VELORA — Scents That Define Your Story',description:'Discover Bloom, Noir Essence, Celeste, Oud Royale, and Aurora. Expressive fragrances, distinctive character, and a signature for every story.',openGraph:{title:'VELORA — Scents That Define Your Story',description:'Scents that stay. Stories that live forever.',type:'website'}};
+import './brand.css';
+export const metadata: Metadata = {metadataBase:new URL(process.env.VELORA_APP_SURFACE==='admin'?(process.env.VELORA_ADMIN_URL||'http://127.0.0.1:3002'):(process.env.VELORA_STOREFRONT_URL||'http://localhost:3001')),title:'ALORA — Your Scent. Your Signature.',icons:{icon:'/brand/alora-icon.png',shortcut:'/brand/alora-icon.png',apple:'/brand/alora-apple-touch-icon.png'},description:'Discover Bloom, Noir Essence, Celeste, Oud Royale, and Aurora. Expressive fragrances, distinctive character, and a signature for every story.',openGraph:{title:'ALORA — Your Scent. Your Signature.',description:'Scents that stay. Stories that live forever.',type:'website',images:[{url:'/brand/alora-logo-white-full-hd.png',width:1920,height:1080,alt:'ALORA — Your Scent. Your Signature.'}]}};
 export default function RootLayout({children}:{children:React.ReactNode}) {return <html lang="en"><body><StoreDataProvider>{children}</StoreDataProvider></body></html>}

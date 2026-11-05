@@ -233,3 +233,27 @@
  .admin-topbar-breadcrumb>svg { display:none; }
  .admin-topbar-breadcrumb strong { display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 }
+
+.admin-campaign-tabs { display:flex;gap:7px;flex-wrap:wrap;margin:0 0 22px; }
+.admin-campaign-tabs>button { padding:11px 17px;border:1px solid #d9dfd2;border-radius:8px;color:#52604a;background:#fffdf8;font-size:14px; }
+.admin-campaign-tabs>button[aria-pressed=true] { background:#24472e;border-color:#24472e;color:#fffdf4; }
+.admin-popup-layout { display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start; }
+.admin-popup-preview { position:sticky;top:20px;text-align:center;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:13px; }
+.admin-popup-preview-art { width:calc(100% + 44px);margin:-22px -22px 3px;aspect-ratio:1.5;background:#f5ecdd;display:grid;place-items:center;overflow:hidden; }
+.admin-popup-preview-art img { width:100%;height:100%;object-fit:cover; }
+.admin-popup-preview h3 { font:28px/1.2 Georgia,serif;color:#32452e; }
+.admin-popup-preview p { font-size:13px;line-height:1.7;color:#758068; }
+.admin-popup-preview>strong { font:29px Georgia,serif;color:#9b7131; }
+.admin-popup-preview-cta { display:block;border-radius:7px;padding:12px;width:100%;background:#25472e;color:#fff;font-size:13px;overflow-wrap:anywhere; }
+.admin-popup-preview>small { font-size:11px;line-height:1.6;color:#7f8978; }
+.admin-popup-state { font-size:11px;border-radius:15px;background:#ecebe4;color:#74766e;padding:5px 10px; }
+.admin-popup-state.is-on { background:#e8f0dc;color:#416332; }
+.admin-product-offer { border:1px solid #dce2ce;border-radius:10px;background:#f8faef;padding:18px; }
+.admin-product-offer .admin-form-grid { margin-top:18px; }
+@media(max-width:1100px) { .admin-popup-layout { grid-template-columns:minmax(0,1fr); }.admin-popup-preview { position:static;max-width:430px;width:100%;justify-self:center; } }
+@media(max-width:600px) { .admin-campaign-tabs>button { flex:1;font-size:12px;padding:10px; }.admin-product-offer { padding:14px; } }
+.admin-toggle>i { pointer-events:none; }
+
+.admin-sidebar-bottom .admin-developer-credit { margin:14px 0 0;font-size:12px;line-height:1.7;text-align:center;color:#b8c5ac;overflow-wrap:anywhere; }
+.admin-sidebar-bottom .admin-developer-credit a { display:block;color:#ead29b;font-weight:600;text-decoration:none;transition:color .2s; }
+.admin-sidebar-bottom .admin-developer-credit a:hover { color:#fff6de;text-decoration:none; }

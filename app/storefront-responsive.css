@@ -105,3 +105,21 @@
 @media(min-width:761px) { .velora-account-trigger { width:33px;height:33px;min-width:33px;min-height:33px;padding:6px;border:1px solid #ffffffb8;background:#fff8e9d9; }.velora-account-trigger>.velora-account-chevron { display:none; }.velora-account-trigger>i { right:3px;top:2px; } }
 .velora-account-dropdown { top:calc(100% + 13px); }
 .velora-account-trigger>svg:first-child { width:20px;height:20px; }
+
+/* Desktop navigation floats above the page and stays anchored during scrolling. */
+@media(min-width:1081px) {
+ .product-world { --floating-nav-height:74px;padding-top:calc(var(--floating-nav-height) + 24px); }
+ .product-world>.velora-header {
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  width:min(1768px,calc(100% - 80px));height:var(--floating-nav-height);
+  padding:0 clamp(24px,3.5vw,62px);border:1px solid #ffffffb8;border-radius:18px;
+  background:linear-gradient(110deg,#fffaf0ed,#f8efe1eb 68%,#ead9beeb);
+  box-shadow:0 8px 30px #362a1b21,0 1px 0 #fff9 inset;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:70;
+ }
+ .product-world>.velora-header .velora-header-actions { height:100%; }
+ .product-world>.velora-header .velora-account-menu { display:flex;align-items:center;height:100%; }
+ .product-world>.velora-header .velora-account-dropdown { top:calc(100% + 12px); }
+ html:has(.product-world) { scroll-padding-top:116px; }
+}
+@media(min-width:1800px) { .product-world { --floating-nav-height:85px; } }

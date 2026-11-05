@@ -13,7 +13,7 @@ if(process.env.VERCEL==='1'&&process.env.VERCEL_ENV==='production'){
   console.info('Production portal and persistent-storage configuration verified.');
  }catch(error){
   // Validation messages never include the URL's credentials.
-  console.error('[Velora deployment] '+(error instanceof Error&&error.message!=='Invalid URL'?error.message:'Check the production URL configuration.'));
+  console.error('[ALORA deployment] '+(error instanceof Error&&error.message!=='Invalid URL'?error.message:'Check the production URL configuration.'));
   process.exitCode=1;
  }
 }

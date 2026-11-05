@@ -85,7 +85,7 @@ export default function HeroBottle({ name, color, active }: { name: string; colo
     ctx.clearRect(0, 0, 768, 900);
     ctx.strokeStyle = '#e9cd92'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(365,100); ctx.lineTo(384,64); ctx.lineTo(403,100); ctx.closePath(); ctx.stroke();
     ctx.textAlign = 'center'; ctx.fillStyle = '#e8c98e';
-    ctx.font = '74px Georgia'; ctx.fillText('VELORA', 384, 185);
+    ctx.font = '74px Georgia'; ctx.fillText('ALORA', 384, 185);
     ctx.font = '19px Arial'; ctx.fillText('F R A G R A N C E S', 384, 245);
     ctx.fillStyle = '#a88b60'; ctx.fillRect(325, 340, 118, 2);
     ctx.fillStyle = '#e8c98e'; ctx.font = '76px Georgia';
@@ -93,12 +93,15 @@ export default function HeroBottle({ name, color, active }: { name: string; colo
     ctx.font = '19px Arial'; ctx.fillText('E A U   D E   P A R F U M', 384, 730);
     ctx.font = '17px Arial'; ctx.fillText('50 ML  /  1.7 FL.OZ.', 384, 790);
     const labelTexture = new THREE.CanvasTexture(canvas); labelTexture.colorSpace = THREE.SRGBColorSpace;
+    const brandImage=new window.Image();
+    brandImage.onload=()=>{ctx.clearRect(0,0,768,300);ctx.drawImage(brandImage,110,42,548,238);labelTexture.needsUpdate=true;needsRender=true;};
+    brandImage.src='/brand/alora-logo-transparent.webp';
     labelTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
     const label = new THREE.Mesh(new THREE.PlaneGeometry(.94, 1.12), new THREE.MeshBasicMaterial({ map: labelTexture, toneMapped: false, transparent: true, depthWrite: false }));
     label.position.set(0, -.03, .39); bottle.add(label);
     const rear = new THREE.Mesh(new THREE.PlaneGeometry(.3, .2), new THREE.MeshStandardMaterial({ color: '#b99a66', roughness: .7 }));
     rear.position.set(0, -.12, -.39); rear.rotation.y = Math.PI; bottle.add(rear);
-    // A polished gold cap and black top echo the Velora campaign photography.
+    // A polished gold cap and black top echo the ALORA campaign photography.
     const gripCanvas=document.createElement('canvas');gripCanvas.width=gripCanvas.height=256;
     const grip=gripCanvas.getContext('2d')!;grip.fillStyle='#666';grip.fillRect(0,0,256,256);
     grip.strokeStyle='#ddd';grip.lineWidth=2;
@@ -146,6 +149,7 @@ export default function HeroBottle({ name, color, active }: { name: string; colo
     };
     frame = requestAnimationFrame(tick);
     return () => {
+      brandImage.onload=null;
       cancelAnimationFrame(frame); resize.disconnect(); observer.disconnect();
       scene.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Points) { object.geometry.dispose(); const mats = Array.isArray(object.material) ? object.material : [object.material]; mats.forEach(material => material.dispose()); } });
       labelTexture.dispose(); gripTexture.dispose(); environment.dispose(); pmrem.dispose(); renderer.dispose(); renderer.domElement.remove();

@@ -75,3 +75,7 @@
 @media(max-width:360px) {.diwali-art {height:135px;}.diwali-content {padding:22px 20px 18px;}.diwali-content h2 {font-size:32px;}.diwali-content>p {font-size:14px;}.diwali-discount>span {font-size:18px;}.diwali-discount>strong {font-size:46px;}.diwali-submit {font-size:12px;gap:7px;}.diwali-benefits>div {font-size:11px;}}
 @media(max-height:760px) and (min-width:701px) {.diwali-panel {min-height:660px;}.diwali-content {padding-top:22px;padding-bottom:18px;}.diwali-wordmark {font-size:33px;}.diwali-diya {height:35px;margin:4px auto;}.diwali-content h2 {font-size:38px;}.diwali-content>p {font-size:15px;margin:11px 0 14px;}.diwali-discount {margin-bottom:15px;}.diwali-discount>strong {font-size:53px;}.diwali-benefits {margin-top:14px;}}
 @media(prefers-reduced-motion:reduce) {.diwali-spin {animation:none;}}
+
+.diwali-art picture img { object-fit:cover; }
+@media(max-width:700px) { .diwali-art picture img { object-position:50% 64%; } }
+.diwali-content :is(h2,p,.diwali-submit),.admin-popup-preview :is(h3,p,.admin-popup-preview-cta) { overflow-wrap:anywhere; }

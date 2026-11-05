@@ -8,7 +8,11 @@ export function productValue(body:Record<string,unknown>,previous?:StoreProduct)
  const color=text(body.color||'#d7b48b',7);if(!/^#[0-9a-fA-F]{6}$/.test(color))throw new ApiError('Use a six-digit hex bottle colour.');
  const status=body.status||'draft';if(!['active','draft','archived'].includes(String(status)))throw new ApiError('Choose a valid product status.');
  const price=moneyValue(body.price,'50 ml price',1,1000000),price100=body.price100===undefined||body.price100===''?undefined:moneyValue(body.price100,'100 ml price',1,2000000);
- return{id,name,sku:requiredText(body.sku||`VEL-${id.toUpperCase()}`,'a SKU',80),family:requiredText(body.family,'a fragrance family',150),price,...(price100===undefined?{}:{price100}),color,notes:text(body.notes,400),rating:previous?.rating||0,reviews:previous?.reviews||'0',badge:text(body.badge,40),description:text(body.description,4000),image:urlValue(body.image,{empty:false}),stock:numberValue(body.stock??0,'stock quantity',0,1000000,true),status:status as StoreProduct['status'],featured:body.featured===true,topNotes:stringList(body.topNotes),heartNotes:stringList(body.heartNotes),baseNotes:stringList(body.baseNotes),createdAt:previous?.createdAt||now,updatedAt:now};
+ if(body.offerEnabled!==undefined&&typeof body.offerEnabled!=='boolean')throw new ApiError('Choose whether the product offer is enabled.');
+ const offerEnabled=body.offerEnabled===true,offerPrice=body.offerPrice===undefined||body.offerPrice===''?undefined:moneyValue(body.offerPrice,'50 ml offer price',.01,1000000),offerPrice100=body.offerPrice100===undefined||body.offerPrice100===''?undefined:moneyValue(body.offerPrice100,'100 ml offer price',.01,2000000);
+ if(offerEnabled&&(offerPrice===undefined||offerPrice>=price))throw new ApiError('The 50 ml offer price must be lower than its regular price.');
+ if(offerEnabled&&offerPrice100!==undefined&&offerPrice100>=(price100??Math.round(price*1.6)))throw new ApiError('The 100 ml offer price must be lower than its regular price.');
+ return{id,name,sku:requiredText(body.sku||`VEL-${id.toUpperCase()}`,'a SKU',80),family:requiredText(body.family,'a fragrance family',150),price,offerEnabled,...(offerPrice===undefined?{}:{offerPrice}),...(offerPrice100===undefined?{}:{offerPrice100}),...(price100===undefined?{}:{price100}),color,notes:text(body.notes,400),rating:previous?.rating||0,reviews:previous?.reviews||'0',badge:text(body.badge,40),description:text(body.description,4000),image:urlValue(body.image,{empty:false}),stock:numberValue(body.stock??0,'stock quantity',0,1000000,true),status:status as StoreProduct['status'],featured:body.featured===true,topNotes:stringList(body.topNotes),heartNotes:stringList(body.heartNotes),baseNotes:stringList(body.baseNotes),createdAt:previous?.createdAt||now,updatedAt:now};
 }
 export function posterValue(body:Record<string,unknown>,previous?:Poster):Poster{
  const now=new Date().toISOString(),startsAt=text(body.startsAt,40),endsAt=text(body.endsAt,40);
@@ -18,7 +22,12 @@ export function posterValue(body:Record<string,unknown>,previous?:Poster):Poster
 }
 export function settingsValue(body:Record<string,unknown>,previous:StoreSettings):StoreSettings{
  const result={...previous};
- for(const key of ['festivalOfferEnabled','festivalOfferFreeShipping'] as const)if(body[key]!==undefined){if(typeof body[key]!=='boolean')throw new ApiError('Choose a valid offer preference.');result[key]=body[key] as boolean}
+ if(body.festivalCampaignId!==undefined){const id=requiredText(body.festivalCampaignId,'a campaign reference',64);if(!/^[a-z0-9][a-z0-9-]{1,63}$/.test(id))throw new ApiError('Use a campaign reference with 2–64 lowercase letters, numbers and hyphens.');result.festivalCampaignId=id;}
+ for(const key of ['festivalName','festivalPopupTitle','festivalPopupButtonText'] as const)if(body[key]!==undefined)result[key]=requiredText(body[key],key==='festivalName'?'a festival name':'popup text',key==='festivalPopupTitle'?120:80);
+ for(const key of ['festivalPopupSubtitle','festivalPopupDescription'] as const)if(body[key]!==undefined)result[key]=text(body[key],key==='festivalPopupSubtitle'?120:500);
+ for(const key of ['festivalPopupImage','festivalPopupMobileImage'] as const)if(body[key]!==undefined)result[key]=urlValue(body[key],{empty:key==='festivalPopupMobileImage'});
+
+ for(const key of ['festivalOfferEnabled','festivalOfferFreeShipping','festivalPopupEnabled'] as const)if(body[key]!==undefined){if(typeof body[key]!=='boolean')throw new ApiError('Choose a valid offer preference.');result[key]=body[key] as boolean}
  if(body.festivalOfferPercent!==undefined)result.festivalOfferPercent=numberValue(body.festivalOfferPercent,'offer discount',1,90,true);
  if(body.festivalOfferProductIds!==undefined){if(!Array.isArray(body.festivalOfferProductIds))throw new ApiError('Select eligible offer products.');result.festivalOfferProductIds=stringList(body.festivalOfferProductIds,100)}
  for(const key of ['festivalOfferStartsAt','festivalOfferEndsAt'] as const)if(body[key]!==undefined){const value=text(body[key],40);if(value&&!Number.isFinite(Date.parse(value)))throw new ApiError('Choose a valid offer date.');result[key]=value}

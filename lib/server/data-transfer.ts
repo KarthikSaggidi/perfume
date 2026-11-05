@@ -29,6 +29,8 @@ function applyRows(state:StoreState,resource:ImportResource,rows:Record<string,s
     const previous=state.products.find(product=>row.id?product.id===row.id:row.sku&&product.sku===row.sku);
     const body:Record<string,unknown>={...previous,...row};
     for(const field of ['notes','badge','description'])if(input[field]!==undefined)body[field]=input[field];
+    if(row.offerEnabled!==undefined)body.offerEnabled=boolean(row.offerEnabled);
+    for(const field of ['offerPrice','offerPrice100'])if(input[field]==='')body[field]='';
     if(row.featured!==undefined)body.featured=boolean(row.featured);
     for(const field of ['topNotes','heartNotes','baseNotes'])if(input[field]!==undefined)body[field]=input[field].split('|').filter(Boolean);
     if(input.price100==='')body.price100='';

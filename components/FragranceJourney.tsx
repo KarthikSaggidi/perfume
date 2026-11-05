@@ -66,7 +66,7 @@ function Journey(){
       <div className="journey-visual">
         <div className="journey-stage" aria-label={`${product.name} ${view==='3d'?'three-dimensional bottle':'campaign photograph'}`}>
           {view==='photo'?<div className="journey-photograph" key={product.id}><ReferenceImage region={product.id} image={product.image} alt={`${product.name} perfume bottle with its signature ingredients`} priority/></div>:<HeroBottle key={product.id} name={product.name} color={product.color} active/>}
-          <div className="journey-stage-top"><span>VELORA <i/> {view==='3d'?'THE BOTTLE IN 3D':'A MOMENT IN SCENT'}</span><button className="journey-sound" onClick={()=>void toggleSound()} aria-pressed={sound} aria-label={sound?'Turn ambient sound off':'Turn ambient sound on'}>{sound?<Volume2 size={17}/>:<VolumeX size={17}/>}<span>{sound?'Sound on':'Sound off'}</span></button></div>
+          <div className="journey-stage-top"><span>ALORA <i/> {view==='3d'?'THE BOTTLE IN 3D':'A MOMENT IN SCENT'}</span><button className="journey-sound" onClick={()=>void toggleSound()} aria-pressed={sound} aria-label={sound?'Turn ambient sound off':'Turn ambient sound on'}>{sound?<Volume2 size={17}/>:<VolumeX size={17}/>}<span>{sound?'Sound on':'Sound off'}</span></button></div>
           {view==='photo'&&<div className="journey-photo-caption"><span>{product.family}</span><strong>{product.name}</strong><p>{details.mood}</p></div>}
           <div className="journey-atmospheres" role="group" aria-label="Choose atmosphere"><button onClick={()=>setAtmosphere('dawn')} aria-pressed={atmosphere==='dawn'}><Sun size={14}/> Golden dawn</button><button onClick={()=>setAtmosphere('dusk')} aria-pressed={atmosphere==='dusk'}><Moon size={14}/> Evening glow</button></div>
         </div>

@@ -29,7 +29,7 @@ const within=(path:string,root:string)=>path===root||path.startsWith(root+'/');
 export function surfaceAllowsPath(path:string,surface=appSurface()) {
  if(surface==='combined')return true;
  if(surface==='storefront')return !within(path,'/admin')&&!within(path,'/api/admin')&&!within(path,'/api/auth/admin');
- return within(path,'/admin')||within(path,'/api/admin')||within(path,'/api/auth/admin')||path==='/api/auth/session'||path==='/api/catalog'||within(path,'/api/media')||within(path,'/_next')||within(path,'/images')||['/icon.svg','/favicon.ico'].includes(path);
+ return within(path,'/admin')||within(path,'/api/admin')||within(path,'/api/auth/admin')||path==='/api/auth/session'||path==='/api/catalog'||within(path,'/api/media')||within(path,'/_next')||within(path,'/images')||within(path,'/brand')||['/icon.png','/favicon.ico'].includes(path);
 }
 
 export function identityAllowed(kind:'admin'|'customer',surface=appSurface()) {

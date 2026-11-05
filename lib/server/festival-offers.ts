@@ -14,7 +14,7 @@ export async function visitorFestivalOffer(state:StoreState):Promise<PublicFesti
  if(identity)return customerFestivalOffer(state.settings,state.leads,identity.phone);
  const token=(await cookies()).get(claimCookie)?.value;
  const claim=token&&state.offerClaims?.find(item=>item.hash===digest(token)&&Date.parse(item.expiresAt)>Date.now());
- return{...config,unlocked:Boolean(claim&&state.leads?.some(lead=>lead.id===claim.leadId&&leadQualifies(lead)))};
+ return{...config,unlocked:Boolean(claim&&(claim.campaignId||'diwali')===config.campaignId&&state.leads?.some(lead=>lead.id===claim.leadId&&leadQualifies(lead,config.campaignId)))};
 }
 export async function handleFestivalClaim(request:Request){
  try{
@@ -31,17 +31,19 @@ export async function handleFestivalClaim(request:Request){
   const offer=await mutateStore(state=>{
    limit(state,`offer-ip:${requestIp(request)}`,10,3600000);limit(state,`offer-phone:${digest(phone)}`,5,3600000);limit(state,'offer-global',1000,86400000);
    const config=festivalConfig(state.settings);
+   if(body.campaignId!==undefined&&body.campaignId!==config.campaignId)throw new ApiError('This campaign has changed. Refresh the page to see the current offer.',409);
    if(!config.active||!state.products.some(product=>product.status==='active'&&config.productIds.includes(product.id)))throw new ApiError('This offer is no longer available.',409);
    state.leads??=[];state.offerClaims??=[];
    let lead=state.leads.find(lead=>lead.phone===phone);
    const previousClaim=previousToken&&state.offerClaims.find(claim=>claim.hash===digest(previousToken)&&Date.parse(claim.expiresAt)>Date.now());
    const own=identity?.phone===phone||previousClaim&&previousClaim.leadId===lead?.id,now=new Date().toISOString();
    if(lead?.status==='archived')throw new ApiError('This offer is unavailable for this mobile number. Contact the store for help.',409);
-   if(!lead){lead={id:randomUUID(),name,phone,email,marketingConsent:body.marketingConsent===true,source:'diwali-popup',status:'new',notes:'',createdAt:now,updatedAt:now};state.leads.push(lead);audit(state,'Storefront visitor','Claimed Diwali offer','Offer lead')}
+   if(!lead){lead={id:randomUUID(),name,phone,email,marketingConsent:body.marketingConsent===true,source:'festival-popup',campaignIds:[config.campaignId],status:'new',notes:'',createdAt:now,updatedAt:now};state.leads.push(lead);audit(state,'Storefront visitor','Claimed '+config.name+' offer','Offer lead')}
    else if(own){lead.name=name;lead.email=email;lead.marketingConsent=body.marketingConsent===true;lead.updatedAt=now}
+   lead.campaignIds=[...new Set([...(lead.campaignIds||(lead.source==='diwali-popup'?['diwali']:[])),config.campaignId])];
    if(identity)lead.customerId=identity.id;
    if(previousClaim)state.offerClaims=state.offerClaims.filter(claim=>claim.id!==previousClaim.id);
-   state.offerClaims.push({id:randomUUID(),leadId:lead.id,hash:digest(token),createdAt:now,expiresAt:new Date(Date.now()+lifetime*1000).toISOString()});
+   state.offerClaims.push({id:randomUUID(),leadId:lead.id,campaignId:config.campaignId,hash:digest(token),createdAt:now,expiresAt:new Date(Date.now()+lifetime*1000).toISOString()});
    return{...config,unlocked:true};
   });
   (await cookies()).set(claimCookie,token,{httpOnly:true,secure:process.env.NODE_ENV==='production',sameSite:'lax',path:'/',maxAge:lifetime});

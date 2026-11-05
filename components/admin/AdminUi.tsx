@@ -15,7 +15,7 @@ export const initials=(name:string)=>name.trim().split(/\s+/).map(n=>n[0]).slice
 export const parseList=(value:string)=>[...new Set(value.split(',').map(item=>item.trim()).filter(Boolean))];
 
 
-const productImageFallbacks:Record<string,string>={noir:'/images/velora-noir.webp',flora:'/images/velora-celeste.webp',ocean:'/images/velora-portrait.webp',velvet:'/images/velora-bloom.webp',amber:'/images/velora-oud.webp'};
+const productImageFallbacks:Record<string,string>={noir:'/images/alora-noir.webp',flora:'/images/alora-celeste.webp',ocean:'/images/alora-portrait.webp',velvet:'/images/alora-bloom.webp',amber:'/images/alora-oud.webp'};
 export function AdminProductImage({productId,image,alt='',eager=false}:{productId:string;image?:string;alt?:string;eager?:boolean}){
   const [failed,setFailed]=useState<string[]>([]);
   const candidates=[image,productImageFallbacks[productId]].filter((value):value is string=>Boolean(value));

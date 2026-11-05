@@ -1,0 +1,42 @@
+/* ALORA's supplied gold identity, rendered from the transparent master. */
+.brand-logo { display:inline-block;vertical-align:middle;width:160px;max-width:100%;line-height:0;flex:none;letter-spacing:normal; }
+.brand-logo img { display:block;width:100%;height:auto;object-fit:contain; }
+.brand-logo--light { filter:brightness(1.65) saturate(.8); }
+.velora-wordmark>.brand-logo { width:150px;margin:0 auto; }
+.luxury-footer .wordmark>.brand-logo { width:190px; }
+.velora-auth .velora-auth-brand>.brand-logo { width:214px;padding:0;font:inherit;letter-spacing:normal; }
+.velora-auth .velora-auth-brand { margin-bottom:20px; }
+.diwali-wordmark>.brand-logo { width:180px;display:block;margin:0 auto; }
+.admin-shell .admin-brand>.brand-logo { width:182px;display:block;margin:0 auto;padding:0; }
+.admin-loading-brand>.brand-logo { width:220px; }
+.admin-print-brand .brand-logo { width:145px; }
+.bottle-label>.brand-logo,.bottle-back>.brand-logo { width:84px;max-width:100%;font-size:0;letter-spacing:normal;margin:0 auto; }
+@media(max-width:1080px) { .velora-wordmark>.brand-logo { width:145px; } }
+@media(max-width:760px) {
+ .velora-wordmark>.brand-logo { width:118px; }
+ .luxury-footer .wordmark>.brand-logo { width:175px; }
+ .velora-auth .velora-auth-brand>.brand-logo { width:200px; }
+ .diwali-wordmark>.brand-logo { width:160px; }
+}
+@media(max-width:380px) {
+ .velora-wordmark>.brand-logo { width:100px; }
+ .velora-auth .velora-auth-brand>.brand-logo { width:184px; }
+}
+@media print { .brand-logo { filter:none!important;break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact; } }
+
+.footer-credit { line-height:1.7;color:#78674f; }
+.footer-credit a { color:#785619;font-weight:600;text-decoration:underline;text-decoration-color:#b18c5566;text-underline-offset:3px; }
+.footer-credit a:hover { color:#4a3412;text-decoration-color:currentColor; }
+.footer-credit a:focus-visible { outline:2px solid #a67c37;outline-offset:4px; }
+.luxury-footer .luxury-footer-bottom .footer-credit { max-width:none; }
+
+/* Balanced copyright with the studio attribution anchored at the right edge. */
+.luxury-footer-bottom { display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); }
+.luxury-footer-bottom>span { grid-column:2;text-align:center;justify-self:center; }
+.luxury-footer-bottom>.footer-credit { grid-column:3;justify-self:end;text-align:right; }
+.footer-credit a,.footer-credit a:hover { text-decoration:none; }
+@media(max-width:760px) {
+ .luxury-footer-bottom { grid-template-columns:1fr;gap:10px; }
+ .luxury-footer-bottom>span { grid-column:1;width:100%; }
+ .luxury-footer-bottom>.footer-credit { grid-column:1;width:100%;justify-self:end; }
+}

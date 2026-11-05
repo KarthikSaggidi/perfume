@@ -1,18 +1,100 @@
-.velora-why {padding:25px 0 28px;margin:26px 0 23px;border-top:1px solid #ddd4c57d;border-bottom:1px solid #ddd4c57d;}
-.velora-why-heading {margin-bottom:22px;}
-.velora-why-heading>p {font:500 10px/1.5 Arial,sans-serif;letter-spacing:2.4px;color:#a0825c;margin-bottom:7px;}
-.velora-why-heading>h2 {font:400 31px/1.2 Georgia,serif;letter-spacing:-.6px;color:#342b22;}
-.velora-why-reasons {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
-.velora-why-reason {display:grid;grid-template-columns:88px minmax(0,1fr);align-items:center;gap:16px;min-width:0;}
-.velora-why-reason:not(:last-child) {border-right:1px solid #ddd4c57d;padding-right:22px;}
-.velora-why-photo {position:relative;height:106px;overflow:hidden;border-radius:7px;background:#ece1d1;}
-.velora-why-photo>.atelier-image {position:absolute;inset:0;height:100%;width:100%;}
-.velora-why-copy h3 {font:400 20px/1.2 Georgia,serif;letter-spacing:-.25px;color:#433223;margin:0 0 7px;}
-.velora-why-copy>p {font:400 13px/1.6 Arial,sans-serif;color:#8a7863;max-width:230px;margin:0;}
-.velora-why-copy>span {display:flex;align-items:center;gap:7px;font:500 11px/1.4 Arial,sans-serif;color:#89643c;margin-top:11px;}
-.velora-why-copy>span>svg {flex:none;transition:transform .18s ease;}
-.velora-why-reason:hover .velora-why-copy>span>svg {transform:translate(2px,-2px);}
-.velora-why-reason:focus-visible {outline:2px solid #a5875c;outline-offset:6px;border-radius:5px;}
-@media(max-width:1050px) and (min-width:761px) {.velora-why-reasons {gap:17px;}.velora-why-reason {grid-template-columns:65px minmax(0,1fr);gap:12px;}.velora-why-reason:not(:last-child) {padding-right:14px;}.velora-why-photo {height:103px;}.velora-why-copy h3 {font-size:18px;}.velora-why-copy>p {font-size:12px;}.velora-why-copy>span {font-size:10px;}}
-@media(max-width:760px) {.velora-why {padding:21px 0 23px;margin:22px 0 20px;}.velora-why-heading {margin-bottom:19px;}.velora-why-heading>p {font-size:9px;letter-spacing:2px;}.velora-why-heading>h2 {font-size:28px;}.velora-why-reasons {grid-template-columns:1fr;gap:17px;}.velora-why-reason {grid-template-columns:73px minmax(0,1fr);gap:16px;}.velora-why-reason:not(:last-child) {border-right:0;border-bottom:1px solid #ddd4c550;padding:0 0 17px;}.velora-why-photo {height:80px;border-radius:6px;}.velora-why-copy h3 {font-size:20px;margin-bottom:5px;}.velora-why-copy>p {font-size:12px;line-height:1.5;max-width:290px;}.velora-why-copy>span {font-size:10px;margin-top:8px;}}
-@media(prefers-reduced-motion:reduce) {.velora-why-copy>span>svg {transition:none;}}
+/* The supplied cream-and-gold ALORA composition, with independent motion layers. */
+.velora-why { position:relative;isolation:isolate;overflow:hidden;margin:34px 0 0;background:#fbf6ef;color:#161d16; }
+.velora-why-hero { position:relative;isolation:isolate;display:flex;align-items:center;min-height:clamp(330px,29vw,465px);padding:44px 5.5%; }
+.velora-why-art { position:absolute;inset:-12px 0;z-index:-2;pointer-events:none;background:#f5e7d8; }
+.velora-why-art img { object-fit:cover;object-position:center; }
+.velora-why-heading { position:relative;width:54%;max-width:660px;padding:12px 0; }
+.velora-why-heading>p:first-child { display:flex;align-items:center;gap:15px;font:600 11px/1.5 Arial,sans-serif;letter-spacing:2.1px;color:#956315;margin:0 0 23px; }
+.velora-why-heading>p:first-child>span { width:52px;height:1px;background:linear-gradient(90deg,#a87829,#d7bd90);transform-origin:left;animation:why-line 4s ease-in-out 1 alternate;animation-play-state:paused; }
+.velora-why-heading h2 { font:400 clamp(36px,3.8vw,61px)/1.12 Georgia,serif;letter-spacing:-1.6px;color:#121b14;margin:0 0 23px; }
+.velora-why-heading h2 em { font-weight:400;color:#a16c18; }
+.velora-why-heading>.velora-why-description { max-width:555px;font:400 clamp(14px,1.2vw,17px)/1.7 Arial,sans-serif;letter-spacing:0;color:#4b4b45;margin:0; }
+.velora-why-actions { display:flex;align-items:center;flex-wrap:wrap;gap:27px;margin-top:27px; }
+.velora-why-discover { position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:47px;padding:13px 21px;border:1px solid #b48538;border-radius:5px;background:linear-gradient(110deg,#ab7724,#95620e);color:#fffaf0;font:500 13px/1.5 Arial,sans-serif;box-shadow:0 1px 1px #fff3 inset;transition:background .25s,box-shadow .25s; }
+.velora-why-discover::after { position:absolute;content:'';inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,#fff4 50%,transparent 70%);transform:translateX(-120%);transition:transform .65s; }
+.velora-why-discover:hover::after { transform:translateX(120%); }
+.velora-why-discover:hover { box-shadow:0 6px 16px #94682120; }
+.velora-why-discover>svg { transition:transform .25s; }
+.velora-why-discover:hover>svg { transform:translateX(3px); }
+.velora-why-details { padding:0 5.5% 42px;background:linear-gradient(#fbf6ef,#fffaf5); }
+.velora-why-divider { display:flex;align-items:center;gap:18px;color:#b58b43;margin:0 auto 29px; }
+.velora-why-divider>span { flex:1;height:1px;background:linear-gradient(90deg,transparent,#d0af775c 25%,#bf965c8c);transform-origin:right; }
+.velora-why-divider>span:last-child { transform:rotate(180deg); }
+.velora-why-divider>svg { flex:none;animation:why-flower 16s ease-in-out 1 alternate;animation-play-state:paused; }
+.velora-why-reasons { display:grid;grid-template-columns:repeat(3,minmax(0,1fr)); }
+.velora-why-reason { display:flex;align-items:flex-start;gap:20px;min-width:0;padding:12px 27px;color:inherit; }
+.velora-why-reason:first-child { padding-left:0; }
+.velora-why-reason:last-child { padding-right:0; }
+.velora-why-reason:not(:last-child) { border-right:1px solid #c7a36c75; }
+.velora-why-feature-icon { flex:none;margin-top:1px;color:#a47425;transition:transform .4s,color .4s; }
+.velora-why-reason:hover .velora-why-feature-icon,.velora-why-reason:focus-visible .velora-why-feature-icon { transform:rotate(-7deg) scale(1.08);color:#7b5112; }
+.velora-why-copy h3 { font:400 clamp(19px,1.8vw,27px)/1.2 Georgia,serif;letter-spacing:-.6px;color:#172018;margin:0 0 11px; }
+.velora-why-copy p { font:400 13px/1.75 Arial,sans-serif;color:#4e4d48;max-width:330px;margin:0; }
+.velora-why-services { position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:29px 5.5%;background:linear-gradient(100deg,#183a2b,#082419 70%,#113528);color:#fffaf0; }
+.velora-why-services>a { position:relative;display:flex;align-items:center;justify-content:center;gap:16px;min-width:0;padding:0 20px;font:400 13px/1.6 Arial,sans-serif; }
+.velora-why-services>a:first-of-type { padding-left:0;justify-content:flex-start; }
+.velora-why-services>a:last-of-type { padding-right:0; }
+.velora-why-services>a:not(:last-of-type) { border-right:1px solid #d2b8846b; }
+.velora-why-services>a>svg:first-child { flex:none;color:#ead3a4;transition:transform .3s; }
+.velora-why-services>a:hover>svg:first-child { transform:translateY(-3px); }
+.velora-why-service-arrow { position:absolute;right:10px;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s; }
+.velora-why-services>a:hover .velora-why-service-arrow { opacity:1;transform:translateX(0); }
+.velora-why-waves { position:absolute;inset:0;width:100%;height:100%;z-index:-1;color:#b7c6a924;transform-origin:center;animation:why-waves 14s ease-in-out 1 alternate;animation-play-state:paused; }
+.velora-why :is(a,button):focus-visible { outline:2px solid #b18032;outline-offset:5px;border-radius:4px; }
+.velora-why-services>a:focus-visible { outline-color:#f1dcab; }
+.velora-why.is-in-view[data-motion=on] :is(.velora-why-waves,.velora-why-divider>svg,.velora-why-heading>p:first-child>span) { animation-play-state:running; }
+.velora-why[data-motion=off] * { animation:none!important;transition:none!important; }
+@keyframes why-line { from {transform:scaleX(.6);opacity:.6} to {transform:scaleX(1);opacity:1} }
+@keyframes why-flower { from {transform:rotate(-12deg)} to {transform:rotate(12deg)} }
+@keyframes why-waves { to {transform:translateX(2%) scale(1.08)} }
+@media(max-width:1100px) and (min-width:761px) {
+ .velora-why-heading { width:56%; }
+ .velora-why-heading h2 { font-size:40px; }
+ .velora-why-hero { padding-top:35px;padding-bottom:35px; }
+ .velora-why-actions { gap:17px; }
+ .velora-why-discover { padding:11px 14px;font-size:12px;gap:10px; }
+ .velora-why-reason { gap:13px;padding-left:18px;padding-right:18px; }
+ .velora-why-feature-icon { width:29px;height:29px; }
+ .velora-why-copy h3 { font-size:23px; }
+ .velora-why-copy p { font-size:12px; }
+ .velora-why-services>a { gap:10px;font-size:12px;padding:0 13px; }
+ .velora-why-services>a>svg:first-child { width:27px;height:27px; }
+}
+@media(max-width:760px) {
+ .velora-why { margin-top:28px; }
+ .velora-why-hero { display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:0; }
+ .velora-why-heading { order:0;width:100%;max-width:none;padding:32px 24px 17px; }
+ .velora-why-heading>p:first-child { font-size:9px;letter-spacing:1.8px;margin-bottom:17px; }
+ .velora-why-heading h2 { font-size:38px;letter-spacing:-1px;margin-bottom:17px; }
+ .velora-why-heading>.velora-why-description { font-size:14px;line-height:1.7;max-width:480px; }
+ .velora-why-actions { gap:18px;margin-top:22px; }
+ .velora-why-discover { font-size:12px;min-height:45px;padding:11px 15px;gap:10px; }
+ .velora-why-art { position:relative;order:1;inset:auto;z-index:0;width:100%;height:235px;overflow:hidden; }
+ .velora-why-art img { object-position:right center; }
+ .velora-why-details { padding:12px 24px 29px; }
+ .velora-why-divider { margin-bottom:13px;gap:13px; }
+ .velora-why-divider>svg { width:22px; }
+ .velora-why-reasons { grid-template-columns:1fr; }
+ .velora-why-reason,.velora-why-reason:first-child,.velora-why-reason:last-child { padding:20px 0;gap:19px; }
+ .velora-why-reason:not(:last-child) { border-right:0;border-bottom:1px solid #c7a36c50; }
+ .velora-why-reason:last-child { padding-bottom:0; }
+ .velora-why-feature-icon { width:32px;height:32px;margin-top:2px; }
+ .velora-why-copy h3 { font-size:24px;letter-spacing:-.6px;margin-bottom:8px; }
+ .velora-why-copy p { font-size:12px;line-height:1.7;max-width:470px; }
+ .velora-why-services { grid-template-columns:repeat(2,minmax(0,1fr));padding:21px 20px;row-gap:23px; }
+ .velora-why-services>a,.velora-why-services>a:first-of-type,.velora-why-services>a:last-of-type { padding:0 12px;gap:10px;justify-content:flex-start;font-size:11px; }
+ .velora-why-services>a:not(:last-of-type) { border-right:0; }
+ .velora-why-services>a:nth-of-type(odd) { border-right:1px solid #d2b8846b;padding-left:0; }
+ .velora-why-services>a>svg:first-child { width:27px;height:27px; }
+ .velora-why-service-arrow { display:none; }
+}
+@media(max-width:380px) {
+ .velora-why-heading { padding-left:20px;padding-right:20px; }
+ .velora-why-heading h2 { font-size:34px; }
+ .velora-why-actions { align-items:flex-start;flex-direction:column;gap:12px; }
+ .velora-why-art { height:210px; }
+ .velora-why-copy h3 { font-size:22px; }
+ .velora-why-services { padding-left:16px;padding-right:16px; }
+ .velora-why-services>a { font-size:10px; }
+}
+@media(prefers-reduced-motion:reduce) { .velora-why * { animation:none!important;transition:none!important; }.velora-why-art,.velora-why-reason { transform:none!important; } }

@@ -2,7 +2,7 @@
    campaign, six collection cards, and a product selection beside the story. */
 :root { --velora-cream:#fbf7f1; --velora-ink:#181610; --velora-gold:#dfba7c; --velora-muted:#817469; }
 .product-world .wishlist-error { color:#9a4637; font:14px/1.5 Arial,sans-serif; margin-top:10px; white-space:normal; overflow-wrap:anywhere; }
-body { background:#4b4337 url('/images/velora-hero.webp') center/cover fixed; color:var(--velora-ink); }
+body { background:#4b4337 url('/images/alora-hero.webp') center/cover fixed; color:var(--velora-ink); }
 .product-world { width:calc(100% - 64px); max-width:1560px; min-height:100vh; margin:12px auto; background:var(--velora-cream) !important; border-radius:12px; box-shadow:0 18px 80px #16110c5c; overflow:clip; }
 .product-world > #site-content { width:calc(100% - 96px); max-width:1440px; }
 .product-world:has(.velora-home) > #site-content { width:100%; max-width:none; }

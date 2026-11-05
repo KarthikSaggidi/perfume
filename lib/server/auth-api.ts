@@ -28,7 +28,7 @@ async function requestOtp(request:Request){
  try{
   if(provider==='twilio')await twilioRequest('Verifications',{To:phone,Channel:'sms'});
   await mutateStore(state=>{const challenge=state.challenges.find(c=>c.id===id);if(challenge)challenge.status='active'});
-  if(provider==='development')console.info(`[Velora local OTP] ${phone}: ${code} (development only; expires in 10 minutes)`);
+  if(provider==='development')console.info(`[ALORA local OTP] ${phone}: ${code} (development only; expires in 10 minutes)`);
  }catch(error){await mutateStore(state=>{const challenge=state.challenges.find(c=>c.id===id);if(challenge)challenge.status='expired'});throw error}
  return json({challengeId:id,maskedPhone:`${phone.slice(0,Math.min(3,phone.length-4))}${'•'.repeat(Math.max(4,phone.length-7))}${phone.slice(-4)}`,retryAfter:60,expiresIn:600,...(provider==='development'?{development:true}:{})});
 }

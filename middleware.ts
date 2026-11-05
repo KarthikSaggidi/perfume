@@ -7,7 +7,7 @@ export function middleware(request:NextRequest){
   if(surface==='combined')return NextResponse.next();
   // Next's image optimizer requests public source images internally without a
   // Host header. These GET-only assets contain no session or private API data.
-  const publicImage=request.nextUrl.pathname.startsWith('/images/')||/^\/api\/media\/[a-f0-9-]{36}$/.test(request.nextUrl.pathname);
+  const publicImage=request.nextUrl.pathname.startsWith('/images/')||request.nextUrl.pathname.startsWith('/brand/')||/^\/api\/media\/[a-f0-9-]{36}$/.test(request.nextUrl.pathname);
   if(publicImage&&['GET','HEAD'].includes(request.method))return NextResponse.next();
   assertSeparateOrigins();
   const canonical=surfaceOrigin(surface),host=request.headers.get('host')||'';

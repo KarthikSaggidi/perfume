@@ -25,7 +25,7 @@ async function main(){
  class Client{jar=new Map<string,string>();async request(url:string,method='GET',body?:unknown,expected=200,extra:Record<string,string>={}){const multipart=body instanceof FormData;const response=await fetch(origin+url,{method,headers:{Origin:origin,...(this.jar.size?{Cookie:[...this.jar].map(([key,value])=>`${key}=${value}`).join('; ')}:{}),...(body!==undefined&&!multipart?{'Content-Type':'application/json'}:{}),...extra},body:body===undefined?undefined:multipart?body as FormData:JSON.stringify(body),redirect:'manual'});for(const value of response.headers.getSetCookie()){const part=value.split(';')[0],index=part.indexOf('=');this.jar.set(part.slice(0,index),part.slice(index+1))}const contentType=response.headers.get('content-type')||'',data=contentType.includes('application/json')?await response.json():contentType.includes('text/')?await response.text():await response.arrayBuffer();assert.equal(response.status,expected,`${method} ${url}: ${typeof data==='object'&&data?'error' in data?String(data.error):response.status:response.status}`);return{data:data as any,response}}}
  const owner=new Client(),anonymous=new Client(),customer=new Client(),other=new Client(),support=new Client();
  const phone='+919000000001';
- const otp=async(client:Client,number:string)=>{const {data}=await client.request('/api/auth/otp/request','POST',{phone:number});assert.equal(data.development,true);assert.equal('code' in data,false);await wait(()=>output.includes(`[Velora local OTP] ${number}:`),5000);const code=[...output.matchAll(new RegExp(`\\[Velora local OTP\\] \\${number}: ([0-9]{6})`,'g'))].at(-1)?.[1];assert.ok(code,'Development OTP stays in the private server log');return{challengeId:data.challengeId,code}};
+ const otp=async(client:Client,number:string)=>{const {data}=await client.request('/api/auth/otp/request','POST',{phone:number});assert.equal(data.development,true);assert.equal('code' in data,false);await wait(()=>output.includes(`[ALORA local OTP] ${number}:`),5000);const code=[...output.matchAll(new RegExp(`\\[ALORA local OTP\\] \\${number}: ([0-9]{6})`,'g'))].at(-1)?.[1];assert.ok(code,'Development OTP stays in the private server log');return{challengeId:data.challengeId,code}};
  try{
   await wait(async()=>{try{return(await fetch(origin+'/api/catalog')).status===200}catch{return false}});
   await anonymous.request('/api/admin/bootstrap','GET',undefined,401);
@@ -149,7 +149,7 @@ async function main(){
     await page.getByLabel('Password',{exact:true}).fill(nextPassword);
     await page.screenshot({path:'/private/tmp/velora-admin-login.png',fullPage:true});
     const loginResult=page.waitForResponse((response:any)=>response.url().endsWith('/api/auth/admin/login')&&response.request().method()==='POST');
-    await page.getByRole('button',{name:/Sign in/}).click();
+    await page.getByRole('button',{name:'Sign In',exact:true}).click();
     const loginResponse=await loginResult,loginBody=await loginResponse.json();
     assert.equal(loginResponse.status(),200,`Browser admin sign-in: ${loginBody.error||loginResponse.status()}`);
     assert.ok((await loginResponse.allHeaders())['set-cookie']?.includes('Max-Age=28800'),'Browser remember me reaches the session issuer');
@@ -329,8 +329,8 @@ await printView.screenshot({path:'/private/tmp/velora-order-print.png',fullPage:
     await page.getByLabel('Verification code digit 1 of 6').fill('000000');
     await page.getByRole('button',{name:'Verify & sign in',exact:true}).click();
     await page.getByRole('alert').filter({hasText:'That code is incorrect.'}).waitFor();
-    await wait(()=>output.includes('[Velora local OTP] +919000000005:'),5000);
-    const code=[...output.matchAll(/\[Velora local OTP\] \+919000000005: ([0-9]{6})/g)].at(-1)![1];
+    await wait(()=>output.includes('[ALORA local OTP] +919000000005:'),5000);
+    const code=[...output.matchAll(/\[ALORA local OTP\] \+919000000005: ([0-9]{6})/g)].at(-1)![1];
     await page.getByLabel('Verification code digit 1 of 6').fill(code);
     await page.getByRole('button',{name:'Verify & sign in',exact:true}).click();
     await page.getByRole('button',{name:'Sign out',exact:true}).waitFor();
@@ -375,8 +375,8 @@ await printView.screenshot({path:'/private/tmp/velora-order-print.png',fullPage:
     await accountNav.getByRole('button',{name:'Notifications',exact:true}).click();
     await page.getByRole('checkbox').check();const consent=page.waitForResponse((response:any)=>response.url().endsWith('/api/account')&&response.request().method()==='PATCH');await page.getByRole('button',{name:'Save preferences',exact:true}).click();assert.equal((await consent).status(),200);await page.getByRole('status').filter({hasText:'Your notification preferences have been saved.'}).waitFor();
     await accountNav.getByRole('button',{name:'Account Overview',exact:true}).click();await page.getByRole('button',{name:'Join Now',exact:true}).click();
-    const joining=page.waitForResponse((response:any)=>response.url().endsWith('/api/account/rewards')&&response.request().method()==='POST');await page.getByRole('button',{name:'Join Velora Rewards',exact:true}).click();assert.equal((await joining).status(),200);
-    await page.reload({waitUntil:'domcontentloaded'});await page.getByText('Welcome to the Velora circle',{exact:true}).waitFor();
+    const joining=page.waitForResponse((response:any)=>response.url().endsWith('/api/account/rewards')&&response.request().method()==='POST');await page.getByRole('button',{name:'Join ALORA Rewards',exact:true}).click();assert.equal((await joining).status(),200);
+    await page.reload({waitUntil:'domcontentloaded'});await page.getByText('Welcome to the ALORA circle',{exact:true}).waitFor();
     await page.setViewportSize({width:1440,height:1000});
     await page.goto(origin+'/account?section=wishlist',{waitUntil:'domcontentloaded'});
     await page.getByRole('heading',{name:'Browser Amber',exact:true}).waitFor();
@@ -429,8 +429,8 @@ await printView.screenshot({path:'/private/tmp/velora-order-print.png',fullPage:
      await checkoutLogin.goto(origin+'/account?returnTo=%2Fcheckout',{waitUntil:'domcontentloaded'});
      await checkoutLogin.locator('#account-phone').fill('9000000006');await checkoutLogin.getByRole('button',{name:'Send OTP',exact:true}).click();
      await checkoutLogin.getByLabel('Verification code digit 1 of 6').waitFor();
-     await wait(()=>output.includes('[Velora local OTP] +919000000006:'),5000);
-     const checkoutCode=[...output.matchAll(/\[Velora local OTP\] \+919000000006: ([0-9]{6})/g)].at(-1)![1];
+     await wait(()=>output.includes('[ALORA local OTP] +919000000006:'),5000);
+     const checkoutCode=[...output.matchAll(/\[ALORA local OTP\] \+919000000006: ([0-9]{6})/g)].at(-1)![1];
      await checkoutLogin.getByLabel('Verification code digit 1 of 6').fill(checkoutCode);
      await checkoutLogin.getByRole('button',{name:'Verify & continue to checkout',exact:true}).click();
      await checkoutLogin.waitForURL('**/checkout',{waitUntil:'domcontentloaded'});

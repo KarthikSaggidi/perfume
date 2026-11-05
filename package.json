@@ -18,7 +18,8 @@
     "start:store": "node scripts/dev.mjs --production --surface storefront",
     "start:admin": "node scripts/dev.mjs --production --surface admin",
     "test:split": "node --import tsx scripts/test-split.ts",
-    "test:offer": "node --import tsx scripts/test-offer.ts"
+    "test:offer": "node --import tsx scripts/test-offer.ts",
+    "test:promotions": "node --import tsx scripts/test-promotions.ts"
   },
   "dependencies": {
     "gsap": "^3.13.0",

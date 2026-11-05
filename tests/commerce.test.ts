@@ -98,7 +98,9 @@ test('dashboard reports apply dates, statuses, product and regional filters to a
 
 test('administrator usernames normalize case and reject malformed values',()=>{
  assert.equal(usernameValue('  Store.Admin  '),'store.admin');
- for(const value of ['', 'ab','123admin','admin@example.test','admin with spaces','a'.repeat(41)])assert.throws(()=>usernameValue(value));
+ assert.equal(usernameValue('  Alora@gmailcom  '),'alora@gmailcom');
+ assert.equal(usernameValue('admin@example.test'),'admin@example.test');
+ for(const value of ['', 'ab','123admin','admin@@example.test','admin@','admin with spaces','a'.repeat(41)])assert.throws(()=>usernameValue(value));
 });
 test('short local passwords require the explicit operator exception',async()=>{
  await assert.rejects(()=>hashPassword('Local123'));

@@ -7,6 +7,7 @@ import {readStore} from '@/lib/server/store';
 import {assertAdminResourceAccess} from '@/lib/server/admin-records';
 import {defaultReportFilters,createReport} from '@/lib/admin-report';
 import PrintControls from '@/components/admin/PrintControls';
+import BrandLogo from '@/components/BrandLogo';
 import PrintableReport,{PrintFilters,PrintableOrder} from '@/components/admin/PrintableReport';
 
 export const dynamic='force-dynamic';
@@ -24,5 +25,5 @@ export default async function AdminPrintPage({searchParams}:{searchParams:Promis
  // A bookmarked dashboard print URL gets the same default reporting period.
  if((resource==='overview'||resource==='reports')&&!params.has('from')&&!params.has('to')){const report=createReport(state,defaultReportFilters);params.set('from',report.start.toISOString());params.set('to',new Date(report.end.getTime()+1).toISOString())}
  const title=order?`Order summary · ${order.number}`:resource==='overview'?'Dashboard':resource==='reports'?'Reports & analytics':transferResources[resource].label;
- return <main className="admin-print-page"><PrintControls autoPrint={params.get('autoprint')==='1'} title={`${state.settings.storeName} — ${title}`}/><article className={`admin-print-document ${order?'is-order':''}`}><div className="admin-print-brand"><div><strong>VELORA</strong><span>{state.settings.storeName} · {order?'Order summary':'Store administration'}</span></div><p>Printed {printDate(new Date().toISOString(),true)} IST</p></div><div className="admin-print-title"><h1>{title}</h1>{order?<p>{[state.settings.storeEmail,state.settings.storePhone].filter(Boolean).join(' · ')}</p>:<PrintFilters params={params} state={state}/>}</div>{order?<PrintableOrder order={order}/>:<PrintableReport state={state} resource={resource} params={params}/>}<div className="admin-print-footer"><span>{state.settings.storeName}</span><span>Saved store records · {order?'Order summary':'Administrative report'}</span></div></article></main>;
+ return <main className="admin-print-page"><PrintControls autoPrint={params.get('autoprint')==='1'} title={`${state.settings.storeName} — ${title}`}/><article className={`admin-print-document ${order?'is-order':''}`}><div className="admin-print-brand"><div><BrandLogo/><span>{state.settings.storeName} · {order?'Order summary':'Store administration'}</span></div><p>Printed {printDate(new Date().toISOString(),true)} IST</p></div><div className="admin-print-title"><h1>{title}</h1>{order?<p>{[state.settings.storeEmail,state.settings.storePhone].filter(Boolean).join(' · ')}</p>:<PrintFilters params={params} state={state}/>}</div>{order?<PrintableOrder order={order}/>:<PrintableReport state={state} resource={resource} params={params}/>}<div className="admin-print-footer"><span>{state.settings.storeName}</span><span>Saved store records · {order?'Order summary':'Administrative report'}</span></div></article></main>;
 }
